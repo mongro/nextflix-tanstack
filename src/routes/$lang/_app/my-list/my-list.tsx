@@ -1,4 +1,4 @@
-import { AnimatePresence, m } from "framer-motion";
+import { AnimatePresence, m } from "motion/react";
 import { Movie, MovieDetails, Show, ShowDetails } from "~/lib/tmdb/types";
 import MovieThumbnail from "~/components/collection/movie-thumbnail";
 
