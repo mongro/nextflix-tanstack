@@ -25,7 +25,7 @@ import {
   useRole,
   useTypeahead,
 } from "@floating-ui/react";
-import { Slot } from "@radix-ui/react-slot";
+import { Slot } from "radix-ui";
 import * as React from "react";
 
 const MenuContext = React.createContext<{
@@ -287,7 +287,7 @@ export const MenuItem = ({
   const tree = useFloatingTree();
   const isActive = item.index === menu.activeIndex;
 
-  const Comp = asChild ? Slot : "button";
+  const Comp = asChild ? Slot.Root : "button";
 
   return (
     <Comp
@@ -323,7 +323,7 @@ export function DropdownTrigger({
 }: React.ComponentPropsWithRef<"button"> & {
   asChild?: boolean;
 }) {
-  const Comp = asChild ? Slot : "button";
+  const Comp = asChild ? Slot.Root : "button";
   const { setTrigger, getReferenceProps, isOpen } = useMenuContext();
   const ref = useMergeRefs([setTrigger, props.ref]);
 
