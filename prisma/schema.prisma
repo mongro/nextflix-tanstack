@@ -1,0 +1,125 @@
+generator client {
+  provider   = "prisma-client"
+  output     = "../src/lib/generated/prisma"
+  engineType = "client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id            String    @id
+  name          String
+  email         String    @unique
+  emailVerified Boolean   @default(false)
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @default(now()) @updatedAt
+  profiles      Profile[]
+  accounts      Account[]
+  sessions      Session[]
+
+  @@map("user")
+}
+
+model Session {
+  id                String   @id
+  expiresAt         DateTime
+  token             String   @unique
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  ipAddress         String?
+  userAgent         String?
+  userId            String
+  selectedProfileId Int?
+  selectedProfile   Profile? @relation(fields: [selectedProfileId], references: [id])
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("account")
+}
+
+model Verification {
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now()) @updatedAt
+
+  @@map("verification")
+}
+
+model Profile {
+  id           Int                  @id @default(autoincrement())
+  name         String
+  userId       String
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @updatedAt
+  avatar       String
+  user         User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  movies       ProfileMovie[]
+  movieRatings ProfileMovieRating[]
+  sessions     Session[]
+}
+
+/// *
+///  * Instead of storing full movie details,
+///  * we only store a reference to an external source.
+model ExternalMovie {
+  id             Int                  @id @default(autoincrement())
+  externalId     String               @unique
+  title          String
+  posterUrl      String?
+  createdAt      DateTime             @default(now())
+  updatedAt      DateTime             @updatedAt
+  profiles       ProfileMovie[]
+  profilesRating ProfileMovieRating[]
+}
+
+model ProfileMovie {
+  profileId Int
+  movieId   String
+  addedAt   DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  movie     ExternalMovie @relation(fields: [movieId], references: [externalId], onDelete: Cascade)
+  profile   Profile       @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@id([profileId, movieId])
+}
+
+model ProfileMovieRating {
+  profileId Int
+  movieId   String
+  rating    ThumbsRating
+  ratedAt   DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  movie     ExternalMovie @relation(fields: [movieId], references: [externalId], onDelete: Cascade)
+  profile   Profile       @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@id([profileId, movieId], name: "profileMovieRatingId")
+}
+
+enum ThumbsRating {
+  UP
+  DOWN
+}

@@ -1,0 +1,41 @@
+import { Await } from "@tanstack/react-router";
+import { Items } from "./items";
+import { List, Movie, Show } from "~/lib/tmdb/types";
+
+interface PropsStreamed {
+  title: string;
+  collection: Promise<List<Show>> | Promise<List<Movie>>;
+}
+
+export function CollectionStreamed({ collection, title }: PropsStreamed) {
+  return (
+    <Await promise={collection}>
+      {({ results }) => (
+        <div className="py-6 relative overflow-x-hidden px-4 lg:px-8">
+          <h2 className="font-extrabold text-xl lg:text-3xl text-neutral-200">
+            {title}
+          </h2>
+          <Items items={results} collection={title} />
+        </div>
+      )}
+    </Await>
+  );
+}
+
+interface Props {
+  title: string;
+  collection: List<Show> | List<Movie>;
+}
+
+function Collection({ collection, title }: Props) {
+  return (
+    <div className="py-6 relative overflow-x-hidden px-4 lg:px-8">
+      <h2 className="font-extrabold text-xl lg:text-3xl text-neutral-200">
+        {title}
+      </h2>
+      <Items items={collection.results} collection={title} />
+    </div>
+  );
+}
+
+export default Collection;

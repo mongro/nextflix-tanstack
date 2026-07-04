@@ -1,0 +1,56 @@
+var de_default = {
+	genres: {
+		"28": "Action",
+		"12": "Abenteuer",
+		"16": "Animation",
+		"35": "Komödie",
+		"80": "Krimi",
+		"99": "Dokumentarfilm",
+		"18": "Drama",
+		"9648": "Mystery",
+		"10751": "Familie",
+		"10762": "Kinder",
+		"10763": "News",
+		"10764": "Reality",
+		"10766": "Soap",
+		"10767": "Talk",
+		"14": "Fantasy",
+		"36": "Historie",
+		"27": "Horror",
+		"878": "Science Fiction",
+		"53": "Thriller",
+		"37": "Western"
+	},
+	header: {
+		"movies": "Filme",
+		"shows": "Serien",
+		"mylist": "Meine Liste",
+		"popularShows": "Beliebte Serien",
+		"popularMovies": "Beliebte Filme"
+	},
+	modal: {
+		"similar": "Ähnliche Titel",
+		"episodes": "Folgen",
+		"season": "Staffel"
+	},
+	buttons: {
+		"play": "Abspielen",
+		"moreInfo": "Weitere Infos",
+		"myListAdd": "Meiner Liste hinzufügen",
+		"myListRemove": "Von meiner Liste entfernen",
+		"thumbsUp": "Mag ich",
+		"thumbsDown": "Mag ich net",
+		"signOut": "Ausloggen",
+		"manageProfiles": "Verwalte Profile",
+		"switchProfile": "Profil wechseln",
+		"searchPlaceholder": "Suche Titel, Personen"
+	},
+	meta: {
+		"titleHome": "Nextflix-Startseite",
+		"titleShows": "Nextflix-Serien",
+		"titleMovies": "Nextflix-Filme",
+		"description": "Netflix Klon erstellt mit Next js"
+	}
+};
+//#endregion
+export { de_default as default };

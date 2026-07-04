@@ -1,0 +1,1 @@
+import{f as e}from"./createServerFn-DanlyjXe.js";import{E as t,V as n,z as r}from"./index-9m1Tyo25.js";var i=e();function a(){let e=r.useLoaderData();console.log(`dictionary`,e);let{lang:a}=r.useRouteContext();return(0,i.jsx)(t,{dictionary:e,lang:a,children:(0,i.jsx)(n,{})})}export{a as component};
