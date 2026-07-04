@@ -36,7 +36,8 @@
     "redaxios": "^0.5.1",
     "swiper": "^12.2.0",
     "tailwind-merge": "^3.6.0",
-    "use-debounce": "^10.1.1"
+    "use-debounce": "^10.1.1",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@prisma/adapter-pg": "^7.8.0",
