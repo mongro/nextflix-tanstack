@@ -89,6 +89,9 @@ importers:
       use-debounce:
         specifier: ^10.1.1
         version: 10.1.1(react@19.2.7)
+      zod:
+        specifier: ^4.4.3
+        version: 4.4.3
     devDependencies:
       '@prisma/adapter-pg':
         specifier: ^7.8.0
@@ -4990,7 +4993,7 @@ snapshots:
   h3@2.0.1-rc.20(crossws@0.4.9(srvx@0.11.17)):
     dependencies:
       rou3: 0.8.1
-      srvx: 0.11.17
+      srvx: 0.11.20
     optionalDependencies:
       crossws: 0.4.9(srvx@0.11.17)
 
