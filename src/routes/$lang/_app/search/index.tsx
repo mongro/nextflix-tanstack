@@ -23,19 +23,19 @@ export const Route = createFileRoute("/$lang/_app/search/")({
     console.log("Loader called with deps:", deps);
     let people;
     let actorDetails;
-    if (deps.q != undefined) {
-      people = searchPeople(deps.q);
+    const { q, person } = deps;
+    if (q != undefined) {
+      people = searchPeople(q);
 
       await context.queryClient.ensureInfiniteQueryData({
-        queryKey: ["searchMedia", deps.q],
+        queryKey: ["searchMedia", q],
         staleTime: 1000 * 60 * 60,
         initialPageParam: 1,
-        queryFn: ({ pageParam = 1 }) =>
-          searchMedia(deps.q, pageParam, context.lang),
+        queryFn: ({ pageParam = 1 }) => searchMedia(q, pageParam, context.lang),
       });
     }
-    if (deps.person != undefined) {
-      actorDetails = getActorDetails(deps.person);
+    if (person != undefined) {
+      actorDetails = getActorDetails(person);
     }
     return { people, actorDetails };
   },

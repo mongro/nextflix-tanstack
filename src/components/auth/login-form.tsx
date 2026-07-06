@@ -42,7 +42,7 @@ export function SignInForm() {
   useEffect(() => {
     if (actionState.success) {
       queryClient.refetchQueries({ queryKey: ["session"] });
-      navigate({ to: "/" });
+      navigate({ from: "/$lang/auth/login/", to: "/$lang" });
     }
   }, [actionState.success, navigate]);
 
@@ -97,7 +97,7 @@ export function SignInForm() {
                   <FieldLabel htmlFor={field.name}>Password</FieldLabel>
                   <p className="text-sm text-muted-foreground">
                     <Link
-                      to={`/$lang/auth/forget`}
+                      to={`/$lang`}
                       params={({ lang }) => ({ lang: lang || "en" })}
                     >
                       {" "}

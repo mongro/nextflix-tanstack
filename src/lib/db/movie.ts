@@ -1,4 +1,5 @@
-import prisma, { ExternalMovie } from "../prisma";
+import { ExternalMovie } from "../generated/prisma/client";
+import prisma from "../prisma";
 import { getMediaTitle, getModalInfos } from "../tmdb/requests";
 import { parseInternalId } from "../tmdb/util";
 

@@ -11,7 +11,7 @@ function SearchResults({ search }: Props) {
   return (
     <div>
       <Suspense>
-        <PeopleSearchDisplay search={search} />
+        <PeopleSearchDisplay />
       </Suspense>
       <Suspense>
         <MovieSearchDisplay search={search} />

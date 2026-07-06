@@ -22,7 +22,7 @@ export default function AccountDropdown({
   profile,
 }: AccountDropdownProps) {
   const navigate = useNavigate();
-  const signout = useSignOut(() => navigate({ to: "/" }));
+  const signout = useSignOut(() => navigate({ from: "/$lang", to: "/$lang" }));
   const { dictionary } = useDictionary();
 
   return (

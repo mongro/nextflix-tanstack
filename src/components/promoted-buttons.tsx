@@ -1,9 +1,9 @@
 import { PlayIcon } from "@heroicons/react/24/solid";
 import { InformationCircleIcon } from "@heroicons/react/24/solid";
-import { DictionaryButtons } from "../i18n/dictionaries/type";
-import { useModalContext } from "../routes/$lang/_app/-components/modal-provider";
-import { MediaType } from "@/lib/tmdb/requests";
-import { Button } from "@/components/ui/button";
+import { DictionaryButtons } from "../i18n/type";
+import { MediaType } from "~/lib/tmdb/requests";
+import { Button } from "~/components/ui/button";
+import { useModalContext } from "./provider/modal-provider";
 
 interface Props {
   dictionary: DictionaryButtons;

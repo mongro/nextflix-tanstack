@@ -5,12 +5,12 @@ import {
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
-import { ProfileMovie } from "../prisma";
 /* import { ApiResponseIsInMyList } from "@/app/api/account/profile/[profileId]/mylist/[movieId]/route";
 import { ApiResponseListOfProfile } from "@/app/api/account/profile/[profileId]/mylist/route"; */
 import { api } from "./client";
 import { addToMyList, removeFromMyList } from "../dal/my-list/actions";
 import { getMyList, isInMyList } from "../dal/my-list/queries";
+import { ProfileMovie } from "../generated/prisma/client";
 
 export const MY_LIST_QUERYKEY = "mylist";
 

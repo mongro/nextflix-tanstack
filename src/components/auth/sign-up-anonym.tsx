@@ -17,7 +17,7 @@ export function SignUpAnonym() {
     setIsLoading(false);
     if (success) {
       queryClient.refetchQueries({ queryKey: ["session"] });
-      navigate({ to: "/" });
+      navigate({ from: "/$lang/auth/login/", to: "/$lang" });
     }
   };
 

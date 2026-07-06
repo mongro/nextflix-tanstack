@@ -133,5 +133,8 @@ export const signOut = createServerFn({ method: "GET" }).handler(async () => {
   const headers = getRequestHeaders();
 
   await auth.api.signOut({ headers });
-  throw redirect({ to: "/" });
+  throw redirect({
+    to: "/$lang",
+    params: ({ lang }) => ({ lang: lang || "en" }),
+  });
 });

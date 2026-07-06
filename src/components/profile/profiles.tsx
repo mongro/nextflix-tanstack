@@ -2,12 +2,13 @@ import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import Avatar from "../ui/avatar";
 import { getRouteApi, Link } from "@tanstack/react-router";
 import { Profile } from "@/lib/generated/prisma/client";
+import { useSession } from "~/lib/auth/auth-client";
 
 type ProfilesProps = {
   profiles: Profile[];
 };
 export function Profiles({ profiles }: ProfilesProps) {
-  const { session } = getRouteApi("/$lang").useRouteContext();
+  const session = useSession();
 
   return (
     <div className="p-4 border-2 rounded mt-4">
@@ -28,7 +29,8 @@ export function Profiles({ profiles }: ProfilesProps) {
                     className="size-12"
                   />
                   <div className="text-lg font-bold grow">{profile.name}</div>
-                  {profile.id === session?.session.selectedProfileId && (
+                  {profile.id ===
+                    session.data?.data?.session.selectedProfileId && (
                     <div className="text-sm flex items-center justify-center ">
                       Your Profile
                     </div>

@@ -16,7 +16,7 @@ export function ProfileSelect({ profiles }: ProfilesProps) {
     onSuccess: async (data, variables, onMutateResult, context) => {
       console.log("success", data.success);
       await context.client.refetchQueries({ queryKey: ["session"] });
-      navigate({ to: "/" });
+      navigate({ from: "/$lang/account", to: "/$lang" });
     },
   });
   return (

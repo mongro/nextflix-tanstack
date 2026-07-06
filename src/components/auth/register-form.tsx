@@ -49,7 +49,7 @@ export function SignUpForm() {
   useEffect(() => {
     if (actionState.success) {
       queryClient.refetchQueries({ queryKey: ["session"] });
-      navigate({ to: "/" });
+      navigate({ from: "/$lang/auth/register/", to: "/$lang" });
     }
   }, [actionState.success, navigate, queryClient]);
 

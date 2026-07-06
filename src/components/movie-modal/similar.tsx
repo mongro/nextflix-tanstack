@@ -46,7 +46,6 @@ function Similar({ similarTitles }: Props) {
                   className="object-cover"
                   src={opus.backdrop_path || opus.poster_path}
                   alt={"release_date" in opus ? opus.title : opus.name}
-                  layout="fullWidth"
                   sizes="450px"
                 />
               </div>

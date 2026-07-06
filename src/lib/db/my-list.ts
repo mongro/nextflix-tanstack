@@ -1,9 +1,10 @@
-import prisma, { ProfileMovie } from "../prisma";
+import { ProfileMovie } from "../generated/prisma/client";
+import prisma from "../prisma";
 import { findOrCreateMovie } from "./movie";
 
 export async function addToMyList(
   profileId: ProfileMovie["profileId"],
-  movieId: ProfileMovie["movieId"]
+  movieId: ProfileMovie["movieId"],
 ) {
   const movie = await findOrCreateMovie(movieId);
 
@@ -24,7 +25,7 @@ export async function getMyList(profileId: number) {
 }
 export async function isInMyList(
   profileId: ProfileMovie["profileId"],
-  movieId: ProfileMovie["movieId"]
+  movieId: ProfileMovie["movieId"],
 ) {
   const result = await prisma.profileMovie.findUnique({
     where: {
@@ -39,7 +40,7 @@ export async function isInMyList(
 
 export async function removeFromMyList(
   profileId: ProfileMovie["profileId"],
-  movieId: ProfileMovie["movieId"]
+  movieId: ProfileMovie["movieId"],
 ) {
   const result = await prisma.profileMovie.delete({
     where: {

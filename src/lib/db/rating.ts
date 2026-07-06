@@ -1,9 +1,10 @@
-import prisma, { ProfileMovieRating } from "../prisma";
+import { ProfileMovieRating } from "../generated/prisma/client";
+import prisma from "../prisma";
 import { findOrCreateMovie } from "./movie";
 
 export async function removeRating(
   profileId: ProfileMovieRating["profileId"],
-  movieId: ProfileMovieRating["movieId"]
+  movieId: ProfileMovieRating["movieId"],
 ) {
   const result = await prisma.profileMovieRating.delete({
     where: {
@@ -19,7 +20,7 @@ export async function removeRating(
 export async function giveRating(
   profileId: ProfileMovieRating["profileId"],
   movieId: ProfileMovieRating["movieId"],
-  rating: ProfileMovieRating["rating"]
+  rating: ProfileMovieRating["rating"],
 ) {
   const movie = await findOrCreateMovie(movieId);
 
@@ -45,7 +46,7 @@ export async function giveRating(
 
 export async function getRating(
   profileId: ProfileMovieRating["profileId"],
-  externalMovieId: ProfileMovieRating["movieId"]
+  externalMovieId: ProfileMovieRating["movieId"],
 ) {
   const rating = await prisma.profileMovieRating.findUnique({
     where: {
@@ -62,7 +63,7 @@ export async function getRating(
 export async function getRatings(
   profileId: ProfileMovieRating["profileId"],
   take: number = 20,
-  cursor?: string
+  cursor?: string,
 ) {
   const ratings = await prisma.profileMovieRating.findMany({
     where: {

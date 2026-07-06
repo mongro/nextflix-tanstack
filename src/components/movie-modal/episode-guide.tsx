@@ -105,7 +105,6 @@ function Episodeguide({ showId, seasons }: Props) {
                   <Image
                     src={episode.still_path}
                     alt={episode.name}
-                    layout="fullWidth"
                     sizes="300px"
                   />
                 </div>

@@ -15,7 +15,9 @@ function Layout() {
       <SignUpAnonym />
       <div className="grow flex justify-center items-center">
         <Button asChild variant="outline" size="lg">
-          <Link to="/">Back to Homepage</Link>
+          <Link from="/$lang/auth" to="/$lang">
+            Back to Homepage
+          </Link>
         </Button>
       </div>
       <Footer />

@@ -4,7 +4,7 @@ import { List, Movie, Show } from "~/lib/tmdb/types";
 
 interface PropsStreamed {
   title: string;
-  collection: Promise<List<Show>> | Promise<List<Movie>>;
+  collection: Promise<List<Show> | List<Movie>>;
 }
 
 export function CollectionStreamed({ collection, title }: PropsStreamed) {

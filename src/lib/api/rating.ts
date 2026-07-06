@@ -1,5 +1,4 @@
 //import { ApiResponseRating } from "@/app/api/account/profile/[profileId]/rating/[movieId]/route";
-import { ProfileMovieRating } from "../prisma";
 import { api } from "./client";
 //import { ApiResponseRated } from "@/app/api/account/profile/[profileId]/rated/route";
 import {
@@ -11,6 +10,7 @@ import {
 } from "@tanstack/react-query";
 import { giveRating, removeRating } from "../dal/ratings/actions";
 import { getRating, getRatings } from "../dal/ratings/queries";
+import { ProfileMovieRating } from "../generated/prisma/client";
 
 export const ratingQueryKey = "rating";
 
@@ -82,13 +82,9 @@ export const useGiveRating = () => {
       await context.client.cancelQueries({ queryKey });
       console.log("cancelQueryKey", queryKey);
       const previousRating = context.client.getQueryData(queryKey);
-      context.client.setQueryData(
-        queryKey,
-        previousRating
-          ? {
-              ...previousRating,
-              rating,
-            }
+      context.client.setQueryData(queryKey, (oldData) =>
+        oldData
+          ? { ...oldData, rating }
           : {
               profileId,
               movieId,

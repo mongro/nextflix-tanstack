@@ -124,7 +124,6 @@ const MovieInfoModal = React.forwardRef<HTMLDivElement, Props>(
               className={`object-fill static`}
               src={imageUrl}
               alt={title}
-              layout="fullWidth"
               sizes="300px"
             />
             {
@@ -132,7 +131,6 @@ const MovieInfoModal = React.forwardRef<HTMLDivElement, Props>(
                 className={`object-fill static`}
                 src={imageUrl}
                 alt={title}
-                layout="fullWidth"
                 sizes="600px"
               />
             }

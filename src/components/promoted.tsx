@@ -1,6 +1,7 @@
 import { DictionaryButtons } from "~/i18n/type";
 import Image from "./image-tmdb";
 import { List, Movie } from "~/lib/tmdb/types";
+import PromotedButtons from "./promoted-buttons";
 
 interface Props {
   promise: List<Movie>;
@@ -28,11 +29,11 @@ function Promoted({ promise, dictionary }: Props) {
         <p className="text-white text-sm sm:text-base lg:text-xl mt-2 hidden sm:block">
           {promotedMovie.overview}
         </p>
-        {/*    <PromotedButtons
+        <PromotedButtons
           id={promotedMovie.id}
           type="movie"
           dictionary={dictionary}
-        /> */}
+        />
       </div>
     </div>
   );
