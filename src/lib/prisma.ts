@@ -12,6 +12,7 @@ const connectionString = process.env.DATABASE_URL!;
 console.log(process.env.DATABASE_URL);
 
 const createPrismaClient = () => {
+  console.log("create PrismaClient", process.env.DATABASE_URL);
   // 1. Production / Neon Logic (WebSockets)
   if (connectionString.includes("neon.tech")) {
     const adapter = new PrismaNeon({ connectionString });
