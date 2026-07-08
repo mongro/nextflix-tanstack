@@ -1,4 +1,4 @@
-import { avatarImages } from "@/public/avatars";
+import { avatarImages } from "~/assets/avatars";
 import Avatar from "../ui/avatar";
 
 type AvatarSelectProps = {

@@ -4,7 +4,6 @@ import {
   verifiyServerSession,
 } from "~/lib/auth/authorization";
 import { db } from "~/lib/db";
-import { actionErrorHandler } from "~/lib/error-handler";
 import { ProfileMovie } from "~/lib/generated/prisma/client";
 //import { revalidatePath } from "next/cache";
 
@@ -17,22 +16,19 @@ export const addToMyList = createServerFn({ method: "POST" })
   )
   .handler(async ({ data }) => {
     const { profileId, movieId } = data;
-    try {
-      const session = await verifiyServerSession();
-      const profile = await db.getUserProfile(profileId);
-      if (profile && !canChangeProfile(session.user, profile)) {
-        throw new Error("Unauthorized");
-      }
-      const result = await db.addToMyList(profileId, movieId);
 
-      return {
-        data: result,
-        success: true,
-        message: "Operation completed successfully",
-      };
-    } catch (error) {
-      return actionErrorHandler(error);
+    const session = await verifiyServerSession();
+    const profile = await db.getUserProfile(profileId);
+    if (profile && !canChangeProfile(session.user, profile)) {
+      throw new Error("Unauthorized");
     }
+    const result = await db.addToMyList(profileId, movieId);
+
+    return {
+      data: result,
+      success: true,
+      message: "Operation completed successfully",
+    };
   });
 
 export const removeFromMyList = createServerFn({ method: "POST" })
@@ -44,20 +40,17 @@ export const removeFromMyList = createServerFn({ method: "POST" })
   )
   .handler(async ({ data }) => {
     const { profileId, movieId } = data;
-    try {
-      const session = await verifiyServerSession();
-      const profile = await db.getUserProfile(profileId);
-      if (profile && !canChangeProfile(session.user, profile)) {
-        throw new Error("Unauthorized");
-      }
-      const result = await db.removeFromMyList(profileId, movieId);
-      // revalidatePath("/my-list");
-      return {
-        data: result,
-        success: true,
-        message: "Operation completed successfully",
-      };
-    } catch (error) {
-      return actionErrorHandler(error);
+
+    const session = await verifiyServerSession();
+    const profile = await db.getUserProfile(profileId);
+    if (profile && !canChangeProfile(session.user, profile)) {
+      throw new Error("Unauthorized");
     }
+    const result = await db.removeFromMyList(profileId, movieId);
+    // revalidatePath("/my-list");
+    return {
+      data: result,
+      success: true,
+      message: "Operation completed successfully",
+    };
   });

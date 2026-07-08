@@ -22,7 +22,7 @@ import {
 } from "../ui/dialog";
 import { PencilIcon } from "@heroicons/react/24/solid";
 import Avatar from "~/components/ui/avatar";
-import smiley from "@/public/avatars/smiley.png";
+import smiley from "~/assets/avatars/smiley.png";
 import { Spinner } from "../ui/spinner";
 import { useRouter } from "@tanstack/react-router";
 

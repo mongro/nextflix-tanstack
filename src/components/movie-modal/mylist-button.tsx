@@ -18,11 +18,12 @@ export function MyListButton({ movieId, profileId, onRemove }: Props) {
         onRemove();
       }
     },
-    
   );
   const { dictionary } = useDictionary();
 
-  if (isInMyListQuery.isPending || isInMyListQuery.isError) return null;
+  if (isInMyListQuery.isPending || isInMyListQuery.isError) {
+    return null;
+  }
 
   return (
     <>

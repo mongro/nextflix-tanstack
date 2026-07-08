@@ -114,8 +114,8 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
-        {/*   <TanStackRouterDevtools />
-        <ReactQueryDevtools buttonPosition="bottom-left" /> */}
+        <TanStackRouterDevtools />
+        <ReactQueryDevtools buttonPosition="bottom-left" />
         <Scripts />
       </body>
     </html>

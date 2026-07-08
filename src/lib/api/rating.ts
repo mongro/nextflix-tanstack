@@ -1,5 +1,4 @@
 //import { ApiResponseRating } from "@/app/api/account/profile/[profileId]/rating/[movieId]/route";
-import { api } from "./client";
 //import { ApiResponseRated } from "@/app/api/account/profile/[profileId]/rated/route";
 import {
   infiniteQueryOptions,

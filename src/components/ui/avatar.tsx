@@ -11,10 +11,8 @@ interface AvatarProps extends Omit<
 const Avatar = (props: AvatarProps) => {
   const { src, className, alt, ...rest } = props;
   const [showFallback, setShowFallback] = useState(false);
-  console.log("src", src);
   return !showFallback && src ? (
     <img
-      {...rest}
       src={src}
       alt={alt}
       className={className}
@@ -24,6 +22,7 @@ const Avatar = (props: AvatarProps) => {
       onError={() => {
         setShowFallback(true);
       }}
+      {...rest}
     />
   ) : (
     <UserIcon className={className} />

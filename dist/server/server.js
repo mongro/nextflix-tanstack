@@ -3811,7 +3811,7 @@ var defaultSerovalPlugins = [
 * the dev styles URL for route-scoped CSS collection.
 */
 async function getStartManifest(matchedRoutes) {
-	const { tsrStartManifest } = await import("./assets/_tanstack-start-manifest_v-D4Qu1_Fj.js");
+	const { tsrStartManifest } = await import("./assets/_tanstack-start-manifest_v-CfPMuvuU.js");
 	const startManifest = tsrStartManifest();
 	let routes = startManifest.routes;
 	routes[rootRouteId];
@@ -3835,47 +3835,43 @@ async function getStartManifest(matchedRoutes) {
 var manifest = {
 	"025481635efa9ab7f4a35e8ff5cd0721c6a4b4e310d9303839f352e0f218c35d": {
 		functionName: "getRating_createServerFn_handler",
-		importer: () => import("./assets/queries-BKmAekEF.js")
+		importer: () => import("./assets/queries-BTigPc15.js")
 	},
 	"0288ff3451e406ce2f9b848aae4068b183445ebc5ca8cbaa5d86806fce6215a1": {
 		functionName: "updateProfile_createServerFn_handler",
-		importer: () => import("./assets/profile-iK1oN_cv.js")
+		importer: () => import("./assets/profile-Ce5rVAQG.js")
 	},
 	"0294f90a2e2180fb6741d8f59a13123357d14b7a302a3c2061b2e1f0693e67ac": {
 		functionName: "signOut_createServerFn_handler",
-		importer: () => import("./assets/actions-1VUJ2Jax.js")
+		importer: () => import("./assets/actions-B9TLrHab.js")
 	},
 	"159d84c25e42ff785280b41058b666690aff175cea472ac7f476673d06408406": {
 		functionName: "signIn_createServerFn_handler",
-		importer: () => import("./assets/actions-1VUJ2Jax.js")
+		importer: () => import("./assets/actions-B9TLrHab.js")
 	},
 	"179551a2f45128fc38538abc66dd147022422a3c47a3533776db4da4093ded94": {
 		functionName: "setLocaleCookie_createServerFn_handler",
-		importer: () => import("./assets/route-CwgH9HCi.js")
+		importer: () => import("./assets/route-DAaYnfZH.js")
 	},
 	"1a2510af2021dc660972b48a80d6a6d86d762ced0680e14b06250b70e97b4f26": {
 		functionName: "getDictionaryFn_createServerFn_handler",
-		importer: () => import("./assets/route-CwgH9HCi.js")
+		importer: () => import("./assets/route-DAaYnfZH.js")
 	},
 	"203bc9bc8d4bd20618e0d927e463675184a9d2ba4052168fc9eee74d9d99e1d1": {
 		functionName: "signUp_createServerFn_handler",
-		importer: () => import("./assets/actions-1VUJ2Jax.js")
+		importer: () => import("./assets/actions-B9TLrHab.js")
 	},
 	"2b1c90eed7113b4faf068d499ab0a0523ea5fff6dd0337a06a8d9e0ae60f846c": {
 		functionName: "isInMyList_createServerFn_handler",
-		importer: () => import("./assets/queries-BTlN9rou.js")
-	},
-	"4d69f329237fdfb00ad5d838cf1dc9de845458d453925eaa5056c1f9db9ee756": {
-		functionName: "verifiyServerSession_createServerFn_handler",
-		importer: () => import("./assets/authorization-chco9Fn8.js")
+		importer: () => import("./assets/queries-CUVAyB-g.js")
 	},
 	"506eea61eb3001c55df0727a555e9eca608d112737ba6859485a827676869f0c": {
 		functionName: "getMyListOfProfile_createServerFn_handler",
-		importer: () => import("./assets/queries-BTlN9rou.js")
+		importer: () => import("./assets/queries-CUVAyB-g.js")
 	},
 	"590cde8bf1c8d186d8dfd3a06f4a2ae995910ef1de80b479026d2f8c18c6884a": {
 		functionName: "signUpAnonym_createServerFn_handler",
-		importer: () => import("./assets/actions-1VUJ2Jax.js")
+		importer: () => import("./assets/actions-B9TLrHab.js")
 	},
 	"5b2c0e57e19c88c74b989d8b2a756e6ee3b790348d6da7b961e981bf483e9822": {
 		functionName: "localeRedirect_createServerFn_handler",
@@ -3883,7 +3879,7 @@ var manifest = {
 	},
 	"73d858e86497aace7735a431483de8fef306d0a24ef56bbf88be8a4015db7209": {
 		functionName: "deleteProfile_createServerFn_handler",
-		importer: () => import("./assets/profile-iK1oN_cv.js")
+		importer: () => import("./assets/profile-Ce5rVAQG.js")
 	},
 	"76f1f82fde3940e4fa92b2c30fd883b46e5a20b04caa2876fb8d7f24a53e522c": {
 		functionName: "getMoviesData_createServerFn_handler",
@@ -3891,47 +3887,47 @@ var manifest = {
 	},
 	"77925d6e0cb86fe6b8affb09fa37d6cae3972257b6da22b952cc50bcaeebc4f4": {
 		functionName: "createProfile_createServerFn_handler",
-		importer: () => import("./assets/profile-iK1oN_cv.js")
+		importer: () => import("./assets/profile-Ce5rVAQG.js")
 	},
 	"8bd06d3dd76f298c08a72d2d584775696c147d16cfde3830076e2a3139c8a0ea": {
 		functionName: "getProfile_createServerFn_handler",
-		importer: () => import("./assets/profile-iK1oN_cv.js")
+		importer: () => import("./assets/profile-Ce5rVAQG.js")
 	},
 	"8bf6bb33872b0f3405558578f918eec86dcbba2d8ec59c2d0a86ab51fcc4eb5e": {
 		functionName: "getAllProfilesOfUser_createServerFn_handler",
-		importer: () => import("./assets/profile-iK1oN_cv.js")
+		importer: () => import("./assets/profile-Ce5rVAQG.js")
 	},
 	"8d2e472c216a37b44f02f966a647f8da831b0d805c4e0ec23569189aa0e16d65": {
 		functionName: "selectProfile_createServerFn_handler",
-		importer: () => import("./assets/profile-iK1oN_cv.js")
+		importer: () => import("./assets/profile-Ce5rVAQG.js")
 	},
-	"b19149e8b34f356678324682e1b9530b9cdc489e235b7b6855ce9d187a76800e": {
-		functionName: "getServerSession_createServerFn_handler",
-		importer: () => import("./assets/authorization-chco9Fn8.js")
+	"976f7b09d981c6643cec278dbcb6fd829c9c3b8aea4006a267c0b6205e7513ca": {
+		functionName: "riskyFunction_createServerFn_handler",
+		importer: () => import("./assets/queries-CUVAyB-g.js")
 	},
 	"bded4211cbfb8d008a114478bef100084c941c371b7f6c4a33667c0a9d2d841b": {
 		functionName: "addToMyList_createServerFn_handler",
-		importer: () => import("./assets/actions-IBhqWka-.js")
+		importer: () => import("./assets/actions-Cv27fA65.js")
 	},
 	"d11b63b390af6aa131d0765ee0fbd3e555b684729ed0592ea03617b91c0d6925": {
 		functionName: "removeFromMyList_createServerFn_handler",
-		importer: () => import("./assets/actions-IBhqWka-.js")
+		importer: () => import("./assets/actions-Cv27fA65.js")
 	},
 	"d3cba362987ac1eb8ff163b882829d7a96eb4c73b707dcf83b11afdab2515b35": {
 		functionName: "getMyList_createServerFn_handler",
-		importer: () => import("./assets/queries-BTlN9rou.js")
+		importer: () => import("./assets/queries-CUVAyB-g.js")
 	},
 	"d57a3d9c09b32f47cf7f004d82e31e7a25b6ba2d0669bed754bc1878f4e2c64c": {
 		functionName: "giveRating_createServerFn_handler",
-		importer: () => import("./assets/actions-Ki8O2Jah.js")
+		importer: () => import("./assets/actions-DNo7yqUW.js")
 	},
 	"ed985b1c3092c243c7ddfc46d395db8b7cf639f9bead261e7e7f10f0155eb0de": {
 		functionName: "removeRating_createServerFn_handler",
-		importer: () => import("./assets/actions-Ki8O2Jah.js")
+		importer: () => import("./assets/actions-DNo7yqUW.js")
 	},
 	"f52c3f80df2d1e20bc056500cca0337293f201d6bb1bc27b2341d18baa3747bb": {
 		functionName: "getRatings_createServerFn_handler",
-		importer: () => import("./assets/queries-BKmAekEF.js")
+		importer: () => import("./assets/queries-BTigPc15.js")
 	}
 };
 async function getServerFnById(id, access) {
@@ -5809,7 +5805,7 @@ var getBaseManifest = getProdBaseManifest;
 var createEarlyHintsForRequest = createEarlyHintsCollector;
 async function loadEntries() {
 	const [routerEntry, startEntry, pluginAdapters] = await Promise.all([
-		import("./assets/router-BZRmAmsJ.js"),
+		import("./assets/router-enHmRA1A.js"),
 		import("./assets/start-Bh0CACOu.js"),
 		import("./assets/empty-plugin-adapters-CaCSChxc.js")
 	]);

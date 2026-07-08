@@ -24,6 +24,7 @@ export const Route = createFileRoute("/$lang/_app/my-list/")({
 function Page() {
   const dictionary = getRouteApi("/$lang").useLoaderData();
   const { myList } = Route.useLoaderData();
+
   return (
     <div className="mt-16 relative mx-4 lg:mx-8">
       <h2 className="font-extrabold text-xl lg:text-3xl text-neutral-200">

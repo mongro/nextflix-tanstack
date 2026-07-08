@@ -7,10 +7,10 @@ import {
 } from "@tanstack/react-query";
 /* import { ApiResponseIsInMyList } from "@/app/api/account/profile/[profileId]/mylist/[movieId]/route";
 import { ApiResponseListOfProfile } from "@/app/api/account/profile/[profileId]/mylist/route"; */
-import { api } from "./client";
 import { addToMyList, removeFromMyList } from "../dal/my-list/actions";
 import { getMyList, isInMyList } from "../dal/my-list/queries";
 import { ProfileMovie } from "../generated/prisma/client";
+import { useServerFn } from "@tanstack/react-start";
 
 export const MY_LIST_QUERYKEY = "mylist";
 
@@ -32,6 +32,7 @@ export const isInMyListQueryOptions = (
   profileId: ProfileMovie["profileId"] | undefined | null,
   movieId: ProfileMovie["movieId"],
 ) => {
+  //const getIsInMyList = useServerFn(isInMyList);
   return queryOptions({
     queryKey: [MY_LIST_QUERYKEY, profileId, movieId],
     queryFn: profileId
@@ -56,9 +57,18 @@ export function useIsInMyList(
   profileId: ProfileMovie["profileId"],
   movieId: ProfileMovie["movieId"],
 ) {
+  const isInMyListServerFn = useServerFn(isInMyList);
+
+  const isInMyListQueryOptions = queryOptions({
+    queryKey: [MY_LIST_QUERYKEY, profileId, movieId],
+    queryFn: profileId
+      ? () => isInMyListServerFn({ data: { profileId, movieId } })
+      : skipToken,
+  });
+
   const queryClient = useQueryClient();
   return useQuery({
-    ...isInMyListQueryOptions(profileId, movieId),
+    ...isInMyListQueryOptions,
     initialData: () => {
       const myList = queryClient.getQueryData(
         getMyListQueryOptions(profileId).queryKey,

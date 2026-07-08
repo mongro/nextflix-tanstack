@@ -1,15 +1,10 @@
 import { auth } from "~/lib/auth/auth";
 import { getRequestHeaders } from "@tanstack/react-start/server";
 import { createServerFn } from "@tanstack/react-start";
-import {
-  SignInActionState,
-  signInFormSchema,
-  SignUpActionState,
-  signUpFormSchema,
-} from "./schema";
+import { signInFormSchema, signUpFormSchema } from "./schema";
 import { APIError } from "better-auth/api";
 import { createProfile } from "../db/profile";
-import smiley from "@/public/avatars/smiley.png";
+import smiley from "~/assets/avatars/smiley.png";
 import { redirect } from "@tanstack/react-router";
 
 export const signIn = createServerFn({ method: "POST" })

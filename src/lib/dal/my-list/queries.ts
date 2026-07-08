@@ -48,3 +48,11 @@ export const isInMyList = createServerFn({ method: "GET" })
     const result = db.isInMyList(profileId, movieId);
     return result;
   });
+
+export const riskyFunction = createServerFn().handler(async () => {
+  const number = Math.random();
+  if (number > 0.5) {
+    throw new Error("Something went wrong!");
+  }
+  return number;
+});

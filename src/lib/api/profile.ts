@@ -6,7 +6,6 @@ import {
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
-import { api } from "./client";
 import { deleteProfile, getProfile } from "../dal/profile";
 import { getMyList } from "../dal/my-list/queries";
 import { ProfileMovieRating } from "../generated/prisma/client";

@@ -3,7 +3,10 @@ import { getRequestHeaders } from "@tanstack/react-start/server";
 import { auth, User } from "./auth";
 import { Profile } from "../generated/prisma/client";
 
-export const getServerSession = createServerFn({ method: "GET" }).handler(
+//calling server functions in server functions causes error in production build
+//serverfunction id doesnt get found
+
+/* export const getServerSession = createServerFn({ method: "GET" }).handler(
   async () => {
     console.log("serverEx");
     const headers = getRequestHeaders();
@@ -13,7 +16,16 @@ export const getServerSession = createServerFn({ method: "GET" }).handler(
 
     return { session };
   },
-);
+); */
+
+export const getServerSession = async () => {
+  const headers = getRequestHeaders();
+  const session = await auth.api.getSession({
+    headers,
+  });
+
+  return session;
+};
 
 /* export const verifiyServerSession = createServerFn({ method: "GET" }).handler(
   async () => {
