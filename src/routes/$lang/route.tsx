@@ -42,8 +42,8 @@ export const Route = createFileRoute("/$lang")({
         params: { lang: params.lang },
       });
     }
-
-    setLocaleCookie({ data: lang as Locale });
+    /* if(lang)
+    setLocaleCookie({ data: lang as Locale }); */
 
     return {
       lang: (lang as Locale) || "en",
