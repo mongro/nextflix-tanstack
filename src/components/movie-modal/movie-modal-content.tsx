@@ -124,16 +124,8 @@ const MovieInfoModal = React.forwardRef<HTMLDivElement, Props>(
               className={`object-fill static`}
               src={imageUrl}
               alt={title}
-              sizes="300px"
+              sizes={state === "big" ? "600px" : "380px"}
             />
-            {
-              <Image
-                className={`object-fill static`}
-                src={imageUrl}
-                alt={title}
-                sizes="600px"
-              />
-            }
           </motion.div>
 
           {state === "big" && (
