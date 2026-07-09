@@ -60,7 +60,8 @@ export const Route = createFileRoute("/$lang/_app/movies/")({
   component: RouteComponent,
   headers: () => ({
     // Cache for 1 hour, allow stale for 7 days
-    "Cache-Control": "public, max-age=3600, stale-while-revalidate=604800",
+    "Cache-Control":
+      "public, max-age=0, s-maxage=60, stale-while-revalidate=86400",
   }),
   staleTime: 1 * 60_000, // 1 hour client-side
 
