@@ -10,8 +10,8 @@ import { getMediaTitle, getModalInfos, getSimilar } from "~/lib/tmdb/requests";
 import MovieModalContent from "./movie-modal-content";
 import { useMemo } from "react";
 import { createInternalId } from "~/lib/tmdb/util";
-/* import { useSession } from "@/lib/auth/auth-client";
-import { useRating } from "@/lib/api/rating"; */
+import { useSession } from "~/lib/auth/auth-client";
+import { useRating } from "~/lib/api/rating";
 import Modal from "./modal";
 import { useDictionary } from "../provider/dictionary-provider";
 import { useRouter } from "@tanstack/react-router";
@@ -51,11 +51,11 @@ export default function Container({
   });
 
   //preload rating
-  /*   const session = useSession();
+  const session = useSession();
   const internalId = createInternalId(id, type);
   const selectedProfileId = session.data?.data?.session.selectedProfileId;
   useRating(selectedProfileId, internalId);
- */
+
   const trailer = useMemo(() => {
     if (data) {
       const videos = data.videos.results;

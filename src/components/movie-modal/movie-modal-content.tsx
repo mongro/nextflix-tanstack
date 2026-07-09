@@ -18,7 +18,6 @@ import { Cast, Movie, MovieDetails, Show, ShowDetails } from "~/lib/tmdb/types";
 import { getMediaType } from "~/lib/tmdb/requests";
 import CastDisplay from "./cast";
 import { Tooltip } from "../ui/tooltip";
-//import { useSession } from "@/lib/auth/auth-client";
 import { MovieRatingButtons } from "./movie-rating-buttons";
 import { MyListButton } from "./mylist-button";
 import { createInternalId } from "~/lib/tmdb/util";
@@ -58,7 +57,6 @@ const MovieInfoModal = React.forwardRef<HTMLDivElement, Props>(
   ) => {
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const [audioOn, setAudioOn] = useState<boolean>(false);
-    const [pending, startTransition] = useTransition();
     const mediaType = getMediaType(details);
     const session = useSession();
     const internalId = createInternalId(details.id, mediaType);

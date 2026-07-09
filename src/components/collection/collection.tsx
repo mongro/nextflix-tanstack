@@ -12,9 +12,11 @@ export function CollectionStreamed({ collection, title }: PropsStreamed) {
     <Await promise={collection}>
       {({ results }) => (
         <div className="py-6 relative overflow-x-hidden px-4 lg:px-8">
-          <h2 className="font-extrabold text-xl lg:text-3xl text-neutral-200">
-            {title}
-          </h2>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="font-extrabold text-xl lg:text-3xl text-neutral-200">
+              {title}
+            </h2>
+          </div>
           <Items items={results} collection={title} />
         </div>
       )}
@@ -29,10 +31,12 @@ interface Props {
 
 function Collection({ collection, title }: Props) {
   return (
-    <div className="py-6 relative overflow-x-hidden px-4 lg:px-8">
-      <h2 className="font-extrabold text-xl lg:text-3xl text-neutral-200">
-        {title}
-      </h2>
+    <div className="py-4 relative overflow-x-hidden px-4 lg:px-8">
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="font-extrabold text-xl lg:text-3xl text-neutral-200">
+          {title}
+        </h2>
+      </div>
       <Items items={collection.results} collection={title} />
     </div>
   );
