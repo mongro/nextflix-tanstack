@@ -194,11 +194,19 @@ function Modal({ reference, state, modalContext, options, children }: Props) {
     transformOrigin: referenceRect ? "top left" : "center top",
   };
 
+  const calculatedThumbToPreview = Math.max(
+    Math.min(
+      thumbnailToPreviewRatio,
+      Math.floor(window.innerWidth * 0.9) / referenceRect!.width,
+    ),
+    350 / referenceRect!.width,
+  );
+
   const style = isBig
     ? { ...defaultStyle }
     : {
         ...defaultStyle,
-        width: (referenceRect?.width || 200) * thumbnailToPreviewRatio,
+        width: (referenceRect?.width || 200) * calculatedThumbToPreview,
       };
 
   const variantProps = useMemo(
@@ -206,7 +214,8 @@ function Modal({ reference, state, modalContext, options, children }: Props) {
       x,
       y,
       modalWidth,
-      thumbnailToPreviewRatio,
+      thumbnailToPreviewRatio: calculatedThumbToPreview,
+      windowWidth: window.innerWidth,
       thumbnail: referenceRect,
       previousState: state.previous,
       exitAnimation: exitAnimation,
@@ -214,7 +223,7 @@ function Modal({ reference, state, modalContext, options, children }: Props) {
     [
       x,
       y,
-      thumbnailToPreviewRatio,
+      calculatedThumbToPreview,
       modalWidth,
       referenceRect,
       state.previous,
