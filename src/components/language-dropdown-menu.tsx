@@ -8,10 +8,34 @@ import {
 import { Button } from "./ui/button";
 import { i18n } from "~/i18n/config";
 import { useDictionary } from "./provider/dictionary-provider";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { setCookie } from "@tanstack/react-start/server";
+import { createServerFn } from "@tanstack/react-start";
+
+const setLocaleCookie = createServerFn({ method: "POST" })
+  .validator((locale: string) => locale)
+  .handler(async ({ data: locale }) => {
+    setCookie("locale", locale, {
+      path: "/",
+      maxAge: 60 * 60 * 24 * 365, // 1 year
+      httpOnly: true,
+      secure: true,
+    });
+  });
 
 export default function LanguageMenu() {
   const { lang } = useDictionary();
+  const navigate = useNavigate();
+
+  const handleLanguageChange = async (lang: string) => {
+    try {
+      // 1. Fire off the server function to update the cookie
+      await setLocaleCookie({ data: lang });
+      navigate({ to: ".", params: { lang } });
+    } catch (error) {
+      console.error("Failed to update language preference:", error);
+    }
+  };
 
   return (
     <DropdownMenu label={lang}>
@@ -23,13 +47,12 @@ export default function LanguageMenu() {
           {i18n.locales.map((locale) => {
             return (
               <MenuItem key={locale} label={locale} asChild>
-                <Link
+                <span
                   className="block px-4 py-2"
-                  to="."
-                  params={{ lang: locale }}
+                  onClick={() => handleLanguageChange(locale)}
                 >
                   {locale}
-                </Link>
+                </span>
               </MenuItem>
             );
           })}
