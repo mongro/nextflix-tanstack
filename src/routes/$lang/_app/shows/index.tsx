@@ -28,7 +28,7 @@ export const Route = createFileRoute("/$lang/_app/shows/")({
 
     // Force the data to take 2 seconds
     await new Promise((r) => setTimeout(r, 4000));
-    
+
     const genreList: TVGenreKey[] = [
       "10763",
       "10766",
@@ -50,7 +50,7 @@ export const Route = createFileRoute("/$lang/_app/shows/")({
       popular,
       collectionByGenre,
     };
-  };,
+  },
 });
 
 function RouteComponent() {
