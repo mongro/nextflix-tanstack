@@ -75,6 +75,7 @@ export const Route = createFileRoute("/$lang/_app/movies/")({
   },
   loader: async ({ params, context }) => {
     const moviesData = await getMoviesData({ data: { lang: context.lang } });
+    await new Promise((r) => setTimeout(r, 4000));
     return moviesData;
   },
 });
