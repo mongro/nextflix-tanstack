@@ -2,6 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { getRequestHeaders } from "@tanstack/react-start/server";
 import { auth, User } from "./auth";
 import { Profile } from "../generated/prisma/client";
+import { redirect } from "@tanstack/react-router";
 
 //calling server functions in server functions causes error in production build
 //serverfunction id doesnt get found
@@ -47,7 +48,7 @@ export const verifiyServerSession = async () => {
     headers,
   });
   if (!session) {
-    throw new Error("Unauthorized");
+    throw redirect({ to: "/$lang/auth/login", from: "/$lang" });
   }
 
   return session;
