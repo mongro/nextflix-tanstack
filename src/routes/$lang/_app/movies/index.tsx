@@ -25,8 +25,6 @@ const getMoviesData = createServerFn()
     console.log("Loader data for movies route:", { promoted, popular });
     setResponseHeaders(
       new Headers({
-        // 'public' is correct ONLY when the response does not depend on identity.
-        // For anything tied to a session/user/tenant, see the authenticated example below.
         "Cache-Control": "private, max-age=3600",
         "CDN-Cache-Control": "max-age=3600, stale-while-revalidate=600",
       }),
@@ -58,7 +56,7 @@ const getMoviesData = createServerFn()
 
 export const Route = createFileRoute("/$lang/_app/movies/")({
   component: RouteComponent,
-  staleTime: 5 * 60_000,
+  staleTime: 5 * 60,
 
   validateSearch: (search: Record<string, unknown>): { id?: modalId } => {
     // validate and parse the search params into a typed state
