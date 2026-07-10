@@ -12,7 +12,6 @@ import { isValidModalId, modalId } from "~/components/provider/modal-provider";
 
 export const Route = createFileRoute("/$lang/_app/shows/")({
   component: RouteComponent,
-  staleTime: 5 * 60_000, // 1 hour client-side
   validateSearch: (search: Record<string, unknown>): { id?: modalId } => {
     // validate and parse the search params into a typed state
     return {
@@ -25,9 +24,6 @@ export const Route = createFileRoute("/$lang/_app/shows/")({
   loader: async ({ params, context }) => {
     const promoted = await getNowPlaying(context.lang);
     const popular = getPopular("tv", context.lang);
-
-    // Force the data to take 2 seconds
-    await new Promise((r) => setTimeout(r, 4000));
 
     const genreList: TVGenreKey[] = [
       "10763",

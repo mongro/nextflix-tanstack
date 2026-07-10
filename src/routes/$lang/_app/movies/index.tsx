@@ -58,10 +58,6 @@ const getMoviesData = createServerFn()
 
 export const Route = createFileRoute("/$lang/_app/movies/")({
   component: RouteComponent,
-  headers: () => ({
-    "Cache-Control":
-      "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400",
-  }),
   staleTime: 5 * 60_000,
 
   validateSearch: (search: Record<string, unknown>): { id?: modalId } => {
@@ -75,7 +71,6 @@ export const Route = createFileRoute("/$lang/_app/movies/")({
   },
   loader: async ({ params, context }) => {
     const moviesData = await getMoviesData({ data: { lang: context.lang } });
-    await new Promise((r) => setTimeout(r, 4000));
     return moviesData;
   },
 });

@@ -6,6 +6,11 @@ import { createFileRoute, getRouteApi } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/$lang/_app/my-list/")({
   component: Page,
+  headers: () => ({
+    "Cache-Control":
+      "no-store, max-age=0, s-maxage=0, stale-while-revalidate=0",
+  }),
+  staleTime: 5 * 60_000,
   loader: async () => {
     const myListIds = await getMyList();
     const myListPromises = myListIds.map((item) => {
