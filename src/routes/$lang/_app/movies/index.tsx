@@ -56,7 +56,7 @@ const getMoviesData = createServerFn()
 
 export const Route = createFileRoute("/$lang/_app/movies/")({
   component: RouteComponent,
-  staleTime: 5 * 60,
+  staleTime: 5 * 60_000,
 
   validateSearch: (search: Record<string, unknown>): { id?: modalId } => {
     // validate and parse the search params into a typed state

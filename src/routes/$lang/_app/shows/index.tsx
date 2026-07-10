@@ -12,6 +12,7 @@ import { isValidModalId, modalId } from "~/components/provider/modal-provider";
 
 export const Route = createFileRoute("/$lang/_app/shows/")({
   component: RouteComponent,
+  staleTime: 5 * 60_000,
   validateSearch: (search: Record<string, unknown>): { id?: modalId } => {
     // validate and parse the search params into a typed state
     return {

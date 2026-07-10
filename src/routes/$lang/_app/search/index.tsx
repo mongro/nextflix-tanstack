@@ -9,7 +9,6 @@ import SearchResults from "~/components/search/search-results";
 
 export const Route = createFileRoute("/$lang/_app/search/")({
   component: Page,
-  staleTime: 5 * 60,
 
   validateSearch: (
     search: Record<string, unknown>,
