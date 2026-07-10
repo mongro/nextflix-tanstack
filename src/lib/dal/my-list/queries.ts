@@ -10,6 +10,7 @@ import { ProfileMovie } from "~/lib/generated/prisma/client";
 
 export const getMyList = createServerFn({ method: "GET" }).handler(async () => {
   const session = await verifiyServerSession();
+
   const selectedProfileId = session.session.selectedProfileId;
 
   if (!selectedProfileId) return [];

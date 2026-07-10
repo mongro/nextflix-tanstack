@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { getRequestHeaders } from "@tanstack/react-start/server";
+import { getCookie, getRequestHeaders } from "@tanstack/react-start/server";
 import { auth, User } from "./auth";
 import { Profile } from "../generated/prisma/client";
 import { redirect } from "@tanstack/react-router";
@@ -47,8 +47,13 @@ export const verifiyServerSession = async () => {
   const session = await auth.api.getSession({
     headers,
   });
+
   if (!session) {
-    throw redirect({ to: "/$lang/auth/login", from: "/$lang" });
+    const locale = getCookie("locale");
+    throw redirect({
+      to: "/$lang/auth/login",
+      params: { lang: locale || "en" },
+    });
   }
 
   return session;

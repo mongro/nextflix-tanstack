@@ -8,9 +8,9 @@ export const Route = createFileRoute("/$lang/_app/my-list/")({
   component: Page,
   headers: () => ({
     "Cache-Control":
-      "no-store, max-age=0, s-maxage=0, stale-while-revalidate=0",
+      "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400",
   }),
-  staleTime: 5 * 60_000,
+  staleTime: 0,
   loader: async () => {
     const myListIds = await getMyList();
     const myListPromises = myListIds.map((item) => {
