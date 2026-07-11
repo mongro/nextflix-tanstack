@@ -1,6 +1,6 @@
-import SearchCollection from "./search-collection";
-import { PersonCombinedCredits, PersonDetails } from "~/lib/tmdb/types";
 import { Await } from "@tanstack/react-router";
+import SearchCollection from "./search-collection";
+import type { PersonCombinedCredits, PersonDetails } from "~/lib/tmdb/types";
 
 interface Props {
   actorDetails: Promise<

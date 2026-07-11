@@ -1,16 +1,16 @@
 import {
+  Suspense,
   createContext,
-  useState,
+  use,
+  useCallback,
   useContext,
   useEffect,
-  useCallback,
   useMemo,
-  use,
-  Suspense,
+  useState,
 } from "react";
-import { MediaType } from "~/lib/tmdb/requests";
-import Container from "~/components/movie-modal/container";
 import { useNavigate, useSearch } from "@tanstack/react-router";
+import type { MediaType } from "~/lib/tmdb/requests";
+import Container from "~/components/movie-modal/container";
 
 interface Props {
   children: React.ReactNode;
@@ -46,7 +46,7 @@ export type State = {
 const ModalContext = createContext<ModalContextType | null>(null);
 
 export function useModalContext() {
-  let context = useContext(ModalContext);
+  const context = useContext(ModalContext);
   if (context === null) {
     throw Error("Used ModalContext outside Provider");
   }

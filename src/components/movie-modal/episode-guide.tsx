@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { getSeason } from "~/lib/tmdb/requests";
 import { useQuery } from "@tanstack/react-query";
+import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
+import { useDictionary } from "../provider/dictionary-provider";
+import type { Season } from "~/lib/tmdb/types";
+import { getSeason } from "~/lib/tmdb/requests";
 import Image from "~/components/image-tmdb";
 import IconButton from "~/components/ui/icon-button";
-import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
-import { Season } from "~/lib/tmdb/types";
 import {
   DropdownMenu,
   DropdownTrigger,
@@ -13,7 +14,6 @@ import {
   MenuPortal,
 } from "~/components/ui/dropdown";
 import { Button } from "~/components/ui/button";
-import { useDictionary } from "../provider/dictionary-provider";
 
 const Placeholder = () => (
   <div className="flex flex-col ">
@@ -26,10 +26,10 @@ const Placeholder = () => (
 );
 interface Props {
   showId: number;
-  seasons: Season[];
+  seasons: Array<Season>;
 }
 
-const getFirstSeasonIndex = (seasons: Season[]) => {
+const getFirstSeasonIndex = (seasons: Array<Season>) => {
   return seasons.findIndex(function (season) {
     return season.season_number === 1;
   });

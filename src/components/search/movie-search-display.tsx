@@ -1,8 +1,8 @@
+import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
+import type { Movie, Show } from "~/lib/tmdb/types";
 import { isShowOrMovie, searchMedia } from "~/lib/tmdb/requests";
 import MovieThumbnail from "~/components/collection/movie-thumbnail";
-import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 import { Button } from "~/components/ui/button";
-import { Movie, Show } from "~/lib/tmdb/types";
 
 interface Props {
   search: string;
@@ -20,7 +20,7 @@ function SearchGallery({ search }: Props) {
       lastPage.page < lastPage.total_pages ? lastPage.page + 1 : undefined,
   });
 
-  const moviesOrShows = data?.pages.reduce<(Movie | Show)[]>((prev, curr) => {
+  const moviesOrShows = data?.pages.reduce<Array<Movie | Show>>((prev, curr) => {
     const result = curr.results;
     const moviesOrShows = result.filter(isShowOrMovie);
 

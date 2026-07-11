@@ -2,7 +2,6 @@ import {
   autoUpdate,
   flip,
   offset,
-  Placement,
   shift,
   useDismiss,
   useFloating,
@@ -11,8 +10,11 @@ import {
   useInteractions,
   useRole,
 } from "@floating-ui/react";
-import { TooltipContext } from "./tooltip-context";
 import { useMemo, useState } from "react";
+import { TooltipContext } from "./tooltip-context";
+import type {
+  Placement} from "@floating-ui/react";
+
 export interface TooltipProps {
   placement: Placement;
   children: React.ReactNode;

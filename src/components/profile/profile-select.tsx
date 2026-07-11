@@ -1,12 +1,12 @@
-import { Button } from "../ui/button";
 import { useMutation } from "@tanstack/react-query";
-import { selectProfile } from "~/lib/dal/profile";
-import Avatar from "../ui/avatar";
-import { Profile } from "@/lib/generated/prisma/client";
 import { useNavigate } from "@tanstack/react-router";
+import { Button } from "../ui/button";
+import Avatar from "../ui/avatar";
+import type { Profile } from "@/lib/generated/prisma/client";
+import { selectProfile } from "~/lib/dal/profile";
 
 type ProfilesProps = {
-  profiles: Profile[];
+  profiles: Array<Profile>;
 };
 export function ProfileSelect({ profiles }: ProfilesProps) {
   const navigate = useNavigate();

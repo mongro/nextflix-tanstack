@@ -1,3 +1,6 @@
+import { Link, useNavigate } from "@tanstack/react-router";
+import { setCookie } from "@tanstack/react-start/server";
+import { createServerFn } from "@tanstack/react-start";
 import {
   DropdownMenu,
   DropdownTrigger,
@@ -6,15 +9,12 @@ import {
   MenuPortal,
 } from "./ui/dropdown";
 import { Button } from "./ui/button";
-import { i18n } from "~/i18n/config";
 import { useDictionary } from "./provider/dictionary-provider";
-import { Link, useNavigate } from "@tanstack/react-router";
-import { setCookie } from "@tanstack/react-start/server";
-import { createServerFn } from "@tanstack/react-start";
+import { i18n } from "~/i18n/config";
 
 const setLocaleCookie = createServerFn({ method: "POST" })
   .validator((locale: string) => locale)
-  .handler(async ({ data: locale }) => {
+  .handler(({ data: locale }) => {
     setCookie("locale", locale, {
       path: "/",
       maxAge: 60 * 60 * 24 * 365, // 1 year

@@ -1,8 +1,8 @@
 // lib/prisma.ts
-import { PrismaClient } from "./generated/prisma/client";
 import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaPg } from "@prisma/adapter-pg"; //
 import { Pool } from "pg"; //
+import { PrismaClient } from "./generated/prisma/client";
 
 const globalForPrisma = global as unknown as {
   prisma: PrismaClient | undefined;

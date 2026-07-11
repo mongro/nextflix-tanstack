@@ -1,5 +1,5 @@
-//import { ApiResponseRating } from "@/app/api/account/profile/[profileId]/rating/[movieId]/route";
-//import { ApiResponseRated } from "@/app/api/account/profile/[profileId]/rated/route";
+// import { ApiResponseRating } from "@/app/api/account/profile/[profileId]/rating/[movieId]/route";
+// import { ApiResponseRated } from "@/app/api/account/profile/[profileId]/rated/route";
 import {
   infiniteQueryOptions,
   queryOptions,
@@ -9,7 +9,7 @@ import {
 } from "@tanstack/react-query";
 import { giveRating, removeRating } from "../dal/ratings/actions";
 import { getRating, getRatings } from "../dal/ratings/queries";
-import { ProfileMovieRating } from "../generated/prisma/client";
+import type { ProfileMovieRating } from "../generated/prisma/client";
 
 export const ratingQueryKey = "rating";
 
@@ -57,8 +57,8 @@ export const getInfiniteRatingsQueryOptions = (
     },
     getNextPageParam: (lastPage) => {
       console.log("lastPage in getNextPageParam:", lastPage);
-      return lastPage && lastPage?.length > take - 1
-        ? lastPage?.[lastPage?.length - 1]?.movieId
+      return lastPage.length > take - 1
+        ? lastPage[lastPage.length - 1]?.movieId
         : undefined;
     },
     initialPageParam: undefined,

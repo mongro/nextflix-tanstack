@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
 import { Navigation } from "swiper/modules";
-import { Swiper as SwiperType } from "swiper/types";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+import type { Swiper as SwiperType } from "swiper/types";
 import "./carousel.css";
 
 interface Props {

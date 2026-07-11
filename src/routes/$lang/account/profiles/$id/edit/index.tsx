@@ -15,7 +15,6 @@ function ProfileEdit() {
   const { profile, error } = Route.useLoaderData();
 
   if (error) return <div>{error.message}</div>;
-  if (!profile) return <div>Profile doesnt exist</div>;
   return (
     <div className="">
       <UpdateProfileForm profile={profile} />

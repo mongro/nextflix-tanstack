@@ -1,29 +1,31 @@
-import { useMemo, useRef, useEffect } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import {
-  useFloating,
+  FloatingFocusManager,
+  FloatingPortal,
   offset,
   safePolygon,
   shift,
-  useHover,
-  useFocus,
   useDismiss,
-  useRole,
+  useFloating,
+  useFocus,
+  useHover,
   useInteractions,
-  FloatingPortal,
-  FloatingFocusManager,
-  MiddlewareArguments,
-  Rect,
+  useRole
 } from "@floating-ui/react";
-import { motion, AnimatePresence, Variants } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 
-import React from "react";
-import {
+
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+import type { Variants } from "motion/react";
+import type {
+  MiddlewareArguments,
+  Rect} from "@floating-ui/react";
+import type {
   ModalContextType,
   ModalOptions,
   ModalState,
   State,
 } from "~/components/provider/modal-provider";
-import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
 const finalShift = {
   name: "finalShift",
@@ -187,7 +189,7 @@ function Modal({ reference, state, modalContext, options, children }: Props) {
   ]);
   const referenceRect = elements.reference?.getBoundingClientRect();
 
-  let defaultStyle = {
+  const defaultStyle = {
     position: strategy,
     top: referenceRect ? 0 : 20,
     left: referenceRect ? 0 : "auto",

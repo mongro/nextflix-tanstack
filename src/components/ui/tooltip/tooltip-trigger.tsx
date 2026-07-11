@@ -1,7 +1,8 @@
-import { useContext, forwardRef, isValidElement, cloneElement } from "react";
-import { useTooltipContext } from "./tooltip-context";
+import { cloneElement, forwardRef, isValidElement, useContext } from "react";
 import { useMergeRefs } from "@floating-ui/react";
 import { Slot } from "radix-ui";
+import { useTooltipContext } from "./tooltip-context";
+
 export interface TooltipTriggerProps {
   children: React.ReactNode;
   asChild?: boolean;

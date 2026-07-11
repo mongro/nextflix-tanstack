@@ -1,14 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Suspense } from "react";
+import type { MovieGenreKey } from "~/i18n/type";
+import type { modalId } from "~/components/provider/modal-provider";
 import { useDictionary } from "~/components/provider/dictionary-provider";
-import { MovieGenreKey } from "~/i18n/type";
 import { getByGenre, getNowPlaying, getPopular } from "~/lib/tmdb/requests";
 import Promoted from "~/components/promoted";
 import CarouselSkeleton from "~/components/collection/collection-skeleton";
 import Collection, {
   CollectionStreamed,
 } from "~/components/collection/collection";
-import { isValidModalId, modalId } from "~/components/provider/modal-provider";
+import { isValidModalId } from "~/components/provider/modal-provider";
 
 export const Route = createFileRoute("/$lang/_app/")({
   component: RouteComponent,
@@ -27,7 +28,7 @@ export const Route = createFileRoute("/$lang/_app/")({
     const popular = getPopular("movie", context.lang);
     console.log("Loader data for movies route:", { promoted, popular });
 
-    const genreList: MovieGenreKey[] = [
+    const genreList: Array<MovieGenreKey> = [
       "27",
       "28",
       "12",
@@ -58,7 +59,7 @@ function RouteComponent() {
   const dictionary = useDictionary().dictionary;
   const { genres } = dictionary;
 
-  const genreList: MovieGenreKey[] = [
+  const genreList: Array<MovieGenreKey> = [
     "27",
     "28",
     "12",

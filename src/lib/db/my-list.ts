@@ -1,6 +1,6 @@
-import { ProfileMovie } from "../generated/prisma/client";
 import prisma from "../prisma";
 import { findOrCreateMovie } from "./movie";
+import type { ProfileMovie } from "../generated/prisma/client";
 
 export async function addToMyList(
   profileId: ProfileMovie["profileId"],

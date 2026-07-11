@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { Link, useSearch } from "@tanstack/react-router";
+import AccountActionClient from "./navigation/account-action-client";
+import type { DictionaryHeader } from "~/i18n/type";
+import type { Locale } from "~/i18n/config";
 import LanguageMenu from "~/components/language-dropdown-menu";
 import SearchBar from "~/components/searchbar";
 import IconButton from "~/components/ui/icon-button";
-import { XMarkIcon, MagnifyingGlassIcon } from "@heroicons/react/24/solid";
-import { DictionaryHeader } from "~/i18n/type";
-import { Locale } from "~/i18n/config";
-import { Link, useSearch } from "@tanstack/react-router";
 import { useLastValidPage } from "~/utils/hooks/useLastValidPage";
-import AccountActionClient from "./navigation/account-action-client";
 
 function Header({
   dictionary,

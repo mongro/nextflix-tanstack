@@ -1,11 +1,12 @@
 import { createServerFn } from "@tanstack/react-start";
 import { getCookie, getRequestHeaders } from "@tanstack/react-start/server";
-import { auth, User } from "./auth";
-import { Profile } from "../generated/prisma/client";
 import { redirect } from "@tanstack/react-router";
+import { auth } from "./auth";
+import type { User } from "./auth";
+import type { Profile } from "../generated/prisma/client";
 
-//calling server functions in server functions causes error in production build
-//serverfunction id doesnt get found
+// calling server functions in server functions causes error in production build
+// serverfunction id doesnt get found
 
 /* export const getServerSession = createServerFn({ method: "GET" }).handler(
   async () => {

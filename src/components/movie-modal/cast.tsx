@@ -1,7 +1,7 @@
-import { Cast as CastType } from "~/lib/tmdb/types";
+import type { Cast as CastType } from "~/lib/tmdb/types";
 
 interface Props {
-  cast: CastType[];
+  cast: Array<CastType>;
 }
 function Cast({ cast }: Props) {
   return (

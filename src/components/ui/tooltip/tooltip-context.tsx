@@ -1,4 +1,5 @@
-import { createContext, CSSProperties, useContext } from "react";
+import { createContext, useContext } from "react";
+import type { CSSProperties} from "react";
 
 export interface TooltipContext {
   open: boolean;

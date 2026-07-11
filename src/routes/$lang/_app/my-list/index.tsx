@@ -1,11 +1,11 @@
-import { getModalInfos } from "~/lib/tmdb/requests";
-import MyList from "./my-list";
-import { parseInternalId } from "~/lib/tmdb/util";
-import { getMyList } from "~/lib/dal/my-list/queries";
 import { createFileRoute, getRouteApi, redirect } from "@tanstack/react-router";
 import { createIsomorphicFn } from "@tanstack/react-start";
 import { getRequestHeaders } from "@tanstack/react-start/server";
 import { getSessionCookie } from "better-auth/cookies";
+import MyList from "./my-list";
+import { getMyList } from "~/lib/dal/my-list/queries";
+import { parseInternalId } from "~/lib/tmdb/util";
+import { getModalInfos } from "~/lib/tmdb/requests";
 import { Spinner } from "~/components/ui/spinner";
 import { hasFreshUnauthenticatedSession } from "~/lib/auth/auth-client";
 
@@ -33,7 +33,7 @@ export const Route = createFileRoute("/$lang/_app/my-list/")({
     ) {
       throw redirect({
         to: "/$lang/auth/login",
-        params: { lang: context.lang || "en" },
+        params: { lang: context.lang },
       });
     }
 

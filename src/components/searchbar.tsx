@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState, useTransition } from "react";
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { useDebouncedCallback } from "use-debounce";
-import { Locale } from "~/i18n/config";
+import { useLocation, useNavigate, useSearch } from "@tanstack/react-router";
 import { IconButton } from "./ui/icon-button";
 import { useDictionary } from "./provider/dictionary-provider";
-import { useLocation, useNavigate, useSearch } from "@tanstack/react-router";
+import type { Locale } from "~/i18n/config";
 
 interface Props {
   onBlur: () => void;
@@ -48,7 +48,7 @@ const SearchBar = ({ onBlur, lang, lastPage }: Props) => {
       return;
     }
 
-    if (!pathname?.includes("/search")) {
+    if (!pathname.includes("/search")) {
       navigate({
         to: `/${lang}/search`,
         search: { q: value },

@@ -1,12 +1,12 @@
 import { HandThumbDownIcon, HandThumbUpIcon } from "@heroicons/react/24/solid";
-import { Button } from "../ui/button";
 import HandThumbDownIconOutline from "@heroicons/react/24/outline/HandThumbDownIcon";
 import HandThumbUpIconOutline from "@heroicons/react/24/outline/HandThumbUpIcon";
+import { Button } from "../ui/button";
+import type { ProfileMovieRating } from "@/lib/generated/prisma/client";
 import {
   useGiveRatingInInfiniteContext,
   useRemoveRatingInInfiniteContext,
 } from "~/lib/api/rating";
-import { ProfileMovieRating } from "@/lib/generated/prisma/client";
 
 type Props = {
   rating: ProfileMovieRating;

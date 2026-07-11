@@ -1,4 +1,4 @@
-import { MediaType } from "./requests";
+import type { MediaType } from "./requests";
 
 export function createInternalId(tmdbId: number, type: MediaType): string {
   return `${type}-${tmdbId}`;

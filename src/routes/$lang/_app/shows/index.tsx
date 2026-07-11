@@ -1,14 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Suspense } from "react";
+import type { TVGenreKey } from "~/i18n/type";
+import type { modalId } from "~/components/provider/modal-provider";
 import { useDictionary } from "~/components/provider/dictionary-provider";
-import { MovieGenreKey, TVGenreKey } from "~/i18n/type";
+import { MovieGenreKey } from "~/i18n/type";
 import { getByGenre, getNowPlaying, getPopular } from "~/lib/tmdb/requests";
 import Promoted from "~/components/promoted";
 import CarouselSkeleton from "~/components/collection/collection-skeleton";
 import Collection, {
   CollectionStreamed,
 } from "~/components/collection/collection";
-import { isValidModalId, modalId } from "~/components/provider/modal-provider";
+import { isValidModalId } from "~/components/provider/modal-provider";
 
 export const Route = createFileRoute("/$lang/_app/shows/")({
   component: RouteComponent,
@@ -26,7 +28,7 @@ export const Route = createFileRoute("/$lang/_app/shows/")({
     const promoted = await getNowPlaying(context.lang);
     const popular = getPopular("tv", context.lang);
 
-    const genreList: TVGenreKey[] = [
+    const genreList: Array<TVGenreKey> = [
       "10763",
       "10766",
       "99",
@@ -56,7 +58,7 @@ function RouteComponent() {
   const dictionary = useDictionary().dictionary;
   const { genres } = dictionary;
 
-  const genreList: TVGenreKey[] = [
+  const genreList: Array<TVGenreKey> = [
     "10763",
     "10766",
     "99",

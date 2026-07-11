@@ -6,7 +6,7 @@ export const LIFETIME_CACHE_TMDB = 10000;
 
 interface ApiOptions {
   path?: string;
-  queryParams?: string[];
+  queryParams?: Array<string>;
   cache?: RequestCache;
 }
 export const api = async <T>({
@@ -14,23 +14,19 @@ export const api = async <T>({
   queryParams,
   cache = "force-cache",
 }: ApiOptions) => {
-  try {
-    const response = await fetch(
-      `${BASE_URL}${path}?api_key=${API_KEY}&${
-        queryParams ? queryParams.join("&") : ""
-      }`,
-      { cache },
-    );
-    if (!response.ok) {
-      if (response.status === 404) {
-        throw new Error();
-      }
-      const message = `An error has occured: ${response.url}`;
-      throw new Error(message);
+  const response = await fetch(
+    `${BASE_URL}${path}?api_key=${API_KEY}&${
+      queryParams ? queryParams.join("&") : ""
+    }`,
+    { cache },
+  );
+  if (!response.ok) {
+    if (response.status === 404) {
+      throw new Error();
     }
-    const result = (await response.json()) as T;
-    return result;
-  } catch (error) {
-    throw error;
+    const message = `An error has occured: ${response.url}`;
+    throw new Error(message);
   }
+  const result = (await response.json()) as T;
+  return result;
 };

@@ -1,8 +1,9 @@
 import { ReactNode } from "react";
+import { Link, Outlet, createFileRoute } from "@tanstack/react-router";
 import { Button } from "~/components/ui/button";
 import { SignUpAnonym } from "~/components/auth/sign-up-anonym";
 import { Footer } from "~/components/footer";
-import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
+
 export const Route = createFileRoute("/$lang/auth")({
   component: Layout,
 });

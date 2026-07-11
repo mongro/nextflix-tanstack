@@ -1,7 +1,7 @@
-import { verifyProfileAccess } from "../utils";
-import { db } from "~/lib/db";
 import { createServerFn } from "@tanstack/react-start";
-import { ProfileMovieRating } from "~/lib/generated/prisma/client";
+import { verifyProfileAccess } from "../utils";
+import type { ProfileMovieRating } from "~/lib/generated/prisma/client";
+import { db } from "~/lib/db";
 
 export const removeRating = createServerFn({ method: "POST" })
   .validator(

@@ -1,7 +1,7 @@
 import ChevronRightIcon from "@heroicons/react/24/solid/ChevronRightIcon";
-import { ProfileDeleteDialog } from "./profile-delete-dialog";
-import { Profile } from "@/lib/generated/prisma/client";
 import { Link } from "@tanstack/react-router";
+import { ProfileDeleteDialog } from "./profile-delete-dialog";
+import type { Profile } from "@/lib/generated/prisma/client";
 
 type ProfileSettingProps = {
   profile: Profile;

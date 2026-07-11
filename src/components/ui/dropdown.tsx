@@ -1,13 +1,11 @@
-import { cn } from "~/utils/cn";
 import {
-  autoUpdate,
-  flip,
-  FloatingContext,
   FloatingFocusManager,
   FloatingList,
   FloatingNode,
   FloatingPortal,
   FloatingTree,
+  autoUpdate,
+  flip,
   offset,
   safePolygon,
   shift,
@@ -27,6 +25,8 @@ import {
 } from "@floating-ui/react";
 import { Slot } from "radix-ui";
 import * as React from "react";
+import type { FloatingContext } from "@floating-ui/react";
+import { cn } from "~/utils/cn";
 
 const MenuContext = React.createContext<{
   getItemProps: (
@@ -46,8 +46,8 @@ const MenuContext = React.createContext<{
   setFloating: (el: HTMLElement | null) => void;
   context: FloatingContext;
   isNested: boolean;
-  elementsRef: React.MutableRefObject<(HTMLButtonElement | null)[]>;
-  labelsRef: React.MutableRefObject<(string | null)[]>;
+  elementsRef: React.MutableRefObject<Array<HTMLButtonElement | null>>;
+  labelsRef: React.MutableRefObject<Array<string | null>>;
   floatingStyles: React.CSSProperties;
 } | null>(null);
 
@@ -172,9 +172,9 @@ export const MenuComponent = ({
           tabIndex={parent.activeIndex === item.index ? 0 : -1}
           role="menuitem"
           data-open={isOpen ? "" : undefined}
-          data-nested={isNested ? "" : undefined}
+          data-nested={""}
           data-focus-inside={hasFocusInside ? "" : undefined}
-          className={isNested ? "MenuItem" : "RootMenu"}
+          className={"MenuItem"}
           {...getReferenceProps(
             parent.getItemProps({
               ...props,

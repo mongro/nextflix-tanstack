@@ -1,6 +1,6 @@
-import { ProfileMovieRating } from "../generated/prisma/client";
 import prisma from "../prisma";
 import { findOrCreateMovie } from "./movie";
+import type { ProfileMovieRating } from "../generated/prisma/client";
 
 export async function removeRating(
   profileId: ProfileMovieRating["profileId"],
@@ -69,7 +69,7 @@ export async function getRatings(
     where: {
       profileId,
     },
-    skip: cursor ? 1 : 0, //skip cursor-fetched in previous page request
+    skip: cursor ? 1 : 0, // skip cursor-fetched in previous page request
     take,
     cursor: cursor
       ? { profileMovieRatingId: { movieId: cursor, profileId } }

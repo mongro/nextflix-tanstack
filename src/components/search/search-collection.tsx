@@ -1,9 +1,9 @@
+import type { Movie, Show } from "~/lib/tmdb/types";
 import MovieThumbnail from "~/components/collection/movie-thumbnail";
 import { isShowOrMovie } from "~/lib/tmdb/requests";
-import { Movie, Show } from "~/lib/tmdb/types";
 
 interface Props {
-  collection: Show[] | Movie[];
+  collection: Array<Show> | Array<Movie>;
 }
 export default function SearchCollection({ collection }: Props) {
   return (

@@ -1,4 +1,4 @@
-//import { ApiResponseProfile } from "@/app/api/account/profile/[profileId]/route";
+// import { ApiResponseProfile } from "@/app/api/account/profile/[profileId]/route";
 import {
   queryOptions,
   skipToken,
@@ -8,7 +8,7 @@ import {
 } from "@tanstack/react-query";
 import { deleteProfile, getProfile } from "../dal/profile";
 import { getMyList } from "../dal/my-list/queries";
-import { ProfileMovieRating } from "../generated/prisma/client";
+import type { ProfileMovieRating } from "../generated/prisma/client";
 
 /* export const getProfile = async (
   profileId: ProfileMovieRating["profileId"]

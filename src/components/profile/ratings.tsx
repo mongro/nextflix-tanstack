@@ -1,10 +1,10 @@
-import { ThumbsButtons } from "./thumb-buttons";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { Button } from "../ui/button";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
-import { getInfiniteRatingsQueryOptions } from "~/lib/api/rating";
 import { Link } from "@tanstack/react-router";
-import { Profile } from "@/lib/generated/prisma/client";
+import { Button } from "../ui/button";
+import { ThumbsButtons } from "./thumb-buttons";
+import type { Profile } from "@/lib/generated/prisma/client";
+import { getInfiniteRatingsQueryOptions } from "~/lib/api/rating";
 
 type Props = {
   profile: Profile;
@@ -23,7 +23,7 @@ export function Ratings({ profile }: Props) {
         <h1 className="text-2xl">Ratings of {profile.name}</h1>
       </div>
       <ul className="table w-full border-collapse">
-        {data?.pages?.map((page) =>
+        {data?.pages.map((page) =>
           page.map((rating) => (
             <li
               key={rating.movieId}

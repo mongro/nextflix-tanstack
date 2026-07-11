@@ -1,44 +1,50 @@
-import React, { useState, useTransition, useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState, useTransition } from "react";
 import ReactPlayer from "react-player";
 import {
+  ArrowsPointingOutIcon,
   PlayIcon,
   SpeakerWaveIcon,
   SpeakerXMarkIcon,
-  ArrowsPointingOutIcon,
+  XMarkIcon,
 } from "@heroicons/react/24/solid";
-import IconButton from "~/components/ui/icon-button";
-import Image from "~/components/image-tmdb";
 import { motion } from "motion/react";
-import { XMarkIcon } from "@heroicons/react/24/solid";
+import { Tooltip } from "../ui/tooltip";
+import { useDictionary } from "../provider/dictionary-provider";
 import Similar from "./similar";
+
 import Meta from "./meta";
 import Genres from "./genres";
 import Episodeguide from "./episode-guide";
-import { Cast, Movie, MovieDetails, Show, ShowDetails } from "~/lib/tmdb/types";
-import { getMediaType } from "~/lib/tmdb/requests";
 import CastDisplay from "./cast";
-import { Tooltip } from "../ui/tooltip";
 import { MovieRatingButtons } from "./movie-rating-buttons";
 import { MyListButton } from "./mylist-button";
+import type {
+  Cast,
+  Movie,
+  MovieDetails,
+  Show,
+  ShowDetails,
+} from "~/lib/tmdb/types";
+import type { ModalState } from "../provider/modal-provider";
 import { createInternalId } from "~/lib/tmdb/util";
-import { useDictionary } from "../provider/dictionary-provider";
-import { ModalState } from "../provider/modal-provider";
+import { getMediaType } from "~/lib/tmdb/requests";
+import Image from "~/components/image-tmdb";
+import IconButton from "~/components/ui/icon-button";
 import { useSession } from "~/lib/auth/auth-client";
 
 interface Props {
   videoUrl?: string;
   imageUrl: string;
   title: string;
-  cast: Cast[];
+  cast: Array<Cast>;
   details: MovieDetails | ShowDetails;
-  similar?: (Movie | Show)[];
+  similar?: Array<Movie | Show>;
   state: ModalState;
-  onClose: () => void;
+  onClose?: () => void;
   onSizeSwitch: React.MouseEventHandler<HTMLButtonElement> | undefined;
   onMyListRemove?: () => void;
 }
 
-// eslint-disable-next-line react/display-name
 const MovieInfoModal = React.forwardRef<HTMLDivElement, Props>(
   (
     {
@@ -63,7 +69,7 @@ const MovieInfoModal = React.forwardRef<HTMLDivElement, Props>(
     const selectedProfileId = session.data?.data?.session.selectedProfileId;
 
     const handleAudioClick = () => {
-      setAudioOn((state) => !state);
+      setAudioOn((audioEnabled) => !audioEnabled);
     };
     const variants = {
       hidden: { opacity: 0 },

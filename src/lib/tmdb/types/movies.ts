@@ -1,4 +1,4 @@
-import { Genre } from ".";
+import type { Genre } from ".";
 
 export interface SpokenLanguage {
   english_name: string;
@@ -12,7 +12,7 @@ export interface Movie {
   adult: boolean;
   overview: string;
   release_date: string;
-  genre_ids: number[];
+  genre_ids: Array<number>;
   original_title: string;
   original_language: string;
   title: string;
@@ -31,7 +31,7 @@ export interface MovieDetails {
   adult: boolean;
   backdrop_path: string;
   budget: number;
-  genres: Genre[];
+  genres: Array<Genre>;
   homepage: string;
   id: number;
   imdb_id: string;
@@ -43,7 +43,7 @@ export interface MovieDetails {
   release_date: string;
   revenue: number;
   runtime: number;
-  spoken_languages: SpokenLanguage[];
+  spoken_languages: Array<SpokenLanguage>;
   status: string;
   tagline: string;
   title: string;

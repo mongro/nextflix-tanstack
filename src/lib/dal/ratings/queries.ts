@@ -1,7 +1,7 @@
-import { verifyProfileAccess } from "../utils";
-import { db } from "~/lib/db";
 import { createServerFn } from "@tanstack/react-start";
-import { ProfileMovieRating } from "~/lib/generated/prisma/client";
+import { verifyProfileAccess } from "../utils";
+import type { ProfileMovieRating } from "~/lib/generated/prisma/client";
+import { db } from "~/lib/db";
 
 export const getRating = createServerFn({ method: "GET" })
   .validator(
@@ -11,7 +11,7 @@ export const getRating = createServerFn({ method: "GET" })
     }) => data,
   )
   .handler(async ({ data }) => {
-    //await verifyProfileAccess(data.profileId);
+    // await verifyProfileAccess(data.profileId);
     const rating = await db.getRating(data.profileId, data.externalMovieId);
     return rating;
   });

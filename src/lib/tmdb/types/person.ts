@@ -1,4 +1,4 @@
-import { MovieWithMediaType } from "./movies";
+import type { MovieWithMediaType } from "./movies";
 
 interface Cast {
   character: string;
@@ -9,7 +9,7 @@ interface Cast {
   poster_path: string;
   original_language: string;
   vote_average: number;
-  genre_ids: number[];
+  genre_ids: Array<number>;
   popularity: number;
   overview: string;
 }
@@ -24,7 +24,7 @@ interface Crew {
   poster_path: string;
   backdrop_path: string;
   popularity: number;
-  genre_ids: number[];
+  genre_ids: Array<number>;
   job: string;
   vote_average: number;
 }
@@ -47,7 +47,7 @@ export interface PersonMovieCrew extends Crew {
 
 export interface PersonTvShowCrew extends Crew {
   episode_count: number;
-  origin_country: string[];
+  origin_country: Array<string>;
   original_name: string;
   name: string;
   first_air_date: string;
@@ -58,24 +58,24 @@ export interface PersonTvShowCast extends Cast {
   name: string;
   episode_count: number;
   first_air_date: string;
-  origin_country: string[];
+  origin_country: Array<string>;
 }
 
 export interface PersonMovieCredit {
-  cast: PersonMovieCast[];
-  crew: PersonMovieCrew[];
+  cast: Array<PersonMovieCast>;
+  crew: Array<PersonMovieCrew>;
   id: number;
 }
 
 export interface PersonTvShowCredit {
-  cast: PersonTvShowCast[];
-  crew: PersonTvShowCrew[];
+  cast: Array<PersonTvShowCast>;
+  crew: Array<PersonTvShowCrew>;
   id: number;
 }
 
 export interface PersonCombinedCredits {
-  cast: (PersonMovieCast & PersonTvShowCast)[];
-  crew: (PersonMovieCrew & PersonTvShowCrew)[];
+  cast: Array<PersonMovieCast & PersonTvShowCast>;
+  crew: Array<PersonMovieCrew & PersonTvShowCrew>;
   id: number;
 }
 
@@ -84,7 +84,7 @@ export type KnownFor = MovieWithMediaType | MovieWithMediaType;
 export interface Person {
   id: number;
   name: string;
-  known_for: KnownFor[];
+  known_for: Array<KnownFor>;
   profile_path: string;
   adult: boolean;
   known_for_department: string;
@@ -102,7 +102,7 @@ export interface PersonDetails {
   deathday: string;
   id: number;
   name: string;
-  also_known_as: string[];
+  also_known_as: Array<string>;
   gender: number;
   biography: string;
   popularity: number;

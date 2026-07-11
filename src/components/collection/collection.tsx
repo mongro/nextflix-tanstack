@@ -1,6 +1,6 @@
 import { Await } from "@tanstack/react-router";
 import { Items } from "./items";
-import { List, Movie, Show } from "~/lib/tmdb/types";
+import type { List, Movie, Show } from "~/lib/tmdb/types";
 
 interface PropsStreamed {
   title: string;

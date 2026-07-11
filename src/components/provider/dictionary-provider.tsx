@@ -1,7 +1,7 @@
 import React, { createContext, useContext } from "react";
 
-import { Locale } from "~/i18n/config";
-import { Dictionary } from "~/i18n/type";
+import type { Locale } from "~/i18n/config";
+import type { Dictionary } from "~/i18n/type";
 
 interface Props {
   children: React.ReactNode;
@@ -15,7 +15,7 @@ export interface DictionaryContextType {
 const DictionaryContext = createContext<DictionaryContextType | null>(null);
 
 export function useDictionary() {
-  let context = useContext(DictionaryContext);
+  const context = useContext(DictionaryContext);
   if (context === null) {
     throw Error("Used Context outside Provider");
   }

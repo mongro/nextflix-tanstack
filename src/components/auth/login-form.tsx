@@ -1,19 +1,17 @@
-import { signIn } from "~/lib/auth/actions";
-import {
-  SignInActionState,
-  SignInFormData,
-  signInFormSchema,
-} from "~/lib/auth/schema";
+import { useServerFn } from "@tanstack/react-start";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { useQueryClient } from "@tanstack/react-query";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useActionState, useEffect, useState, useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Field, FieldError, FieldGroup, FieldLabel } from "../ui/field";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { useQueryClient } from "@tanstack/react-query";
-import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
-import { Link, useNavigate } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
+import type { SignInActionState, SignInFormData } from "~/lib/auth/schema";
+import { signInFormSchema } from "~/lib/auth/schema";
+import { signIn } from "~/lib/auth/actions";
 import { refreshSession, sessionQueryKey } from "~/lib/auth/auth-client";
 
 export function SignInForm() {
@@ -84,7 +82,7 @@ export function SignInForm() {
                 />
                 {actionState.fieldErrors?.email && (
                   <FieldError
-                    errors={[{ message: actionState.fieldErrors?.email[0] }]}
+                    errors={[{ message: actionState.fieldErrors.email[0] }]}
                   />
                 )}
                 {fieldState.invalid && (

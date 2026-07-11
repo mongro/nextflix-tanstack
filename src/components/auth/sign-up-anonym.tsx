@@ -1,9 +1,9 @@
-import { Button } from "../ui/button";
 import { useQueryClient } from "@tanstack/react-query";
-import { Spinner } from "../ui/spinner";
 import { useState } from "react";
-import { signUpAnonym } from "~/lib/auth/actions";
 import { useNavigate } from "@tanstack/react-router";
+import { Button } from "../ui/button";
+import { Spinner } from "../ui/spinner";
+import { signUpAnonym } from "~/lib/auth/actions";
 import { refreshSession, sessionQueryKey } from "~/lib/auth/auth-client";
 
 export function SignUpAnonym() {
@@ -14,9 +14,9 @@ export function SignUpAnonym() {
 
   const handleClick = async () => {
     setIsLoading(true);
-    const success = await signUpAnonym();
+    const response = await signUpAnonym();
     setIsLoading(false);
-    if (success) {
+    if (response.success) {
       try {
         await refreshSession(queryClient);
       } catch {

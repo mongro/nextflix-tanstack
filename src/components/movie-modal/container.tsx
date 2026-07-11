@@ -1,20 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
-import {
+import { useMemo } from "react";
+import { useRouter } from "@tanstack/react-router";
+import { useDictionary } from "../provider/dictionary-provider";
+import MovieModalContent from "./movie-modal-content";
+import Modal from "./modal";
+import type {
   ModalContextType,
   ModalOptions,
   State,
-  getRequestParamsFromId,
-  modalId,
+  modalId} from "~/components/provider/modal-provider";
+import {
+  getRequestParamsFromId
 } from "~/components/provider/modal-provider";
 import { getMediaTitle, getModalInfos, getSimilar } from "~/lib/tmdb/requests";
-import MovieModalContent from "./movie-modal-content";
-import { useMemo } from "react";
 import { createInternalId } from "~/lib/tmdb/util";
 import { useSession } from "~/lib/auth/auth-client";
 import { useRating } from "~/lib/api/rating";
-import Modal from "./modal";
-import { useDictionary } from "../provider/dictionary-provider";
-import { useRouter } from "@tanstack/react-router";
 
 interface Props {
   modalId: modalId;
@@ -50,7 +51,7 @@ export default function Container({
     enabled: !isHidden,
   });
 
-  //preload rating
+  // preload rating
   const session = useSession();
   const internalId = createInternalId(id, type);
   const selectedProfileId = session.data?.data?.session.selectedProfileId;

@@ -1,11 +1,11 @@
-import { auth } from "~/lib/auth/auth";
 import { getRequestHeaders } from "@tanstack/react-start/server";
 import { createServerFn } from "@tanstack/react-start";
-import { signInFormSchema, signUpFormSchema } from "./schema";
 import { APIError } from "better-auth/api";
-import { createProfile } from "../db/profile";
-import smiley from "~/assets/avatars/smiley.png";
 import { redirect } from "@tanstack/react-router";
+import { createProfile } from "../db/profile";
+import { signInFormSchema, signUpFormSchema } from "./schema";
+import smiley from "~/assets/avatars/smiley.png";
+import { auth } from "~/lib/auth/auth";
 
 export const signIn = createServerFn({ method: "POST" })
   .validator((data) => {

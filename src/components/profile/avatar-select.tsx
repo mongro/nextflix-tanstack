@@ -1,5 +1,5 @@
-import { avatarImages } from "~/assets/avatars";
 import Avatar from "../ui/avatar";
+import { avatarImages } from "~/assets/avatars";
 
 type AvatarSelectProps = {
   onSelect: (avatar: string) => void;

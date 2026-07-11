@@ -10,21 +10,21 @@ import {
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import * as React from "react";
-import type { QueryClient } from "@tanstack/react-query";
-import { DefaultCatchBoundary } from "~/components/DefaultCatchBoundary";
-import { NotFound } from "~/components/NotFound";
-import appCss from "~/styles/app.css?url";
-import { seo } from "~/utils/seo";
 import {
   getCookie,
   getRequest,
   getRequestHeader,
 } from "@tanstack/react-start/server";
 import { createServerFn, useServerFn } from "@tanstack/react-start";
+import type { QueryClient } from "@tanstack/react-query";
+import { DefaultCatchBoundary } from "~/components/DefaultCatchBoundary";
+import { NotFound } from "~/components/NotFound";
+import appCss from "~/styles/app.css?url";
+import { seo } from "~/utils/seo";
 
-export const localeRedirect = createServerFn().handler(async () => {
+export const localeRedirect = createServerFn().handler(() => {
   const request = getRequest();
-  const url = new URL(request.url!, `http://${request.headers.get("host")}`);
+  const url = new URL(request.url, `http://${request.headers.get("host")}`);
 
   const localeFromCookie = getCookie("locale");
 

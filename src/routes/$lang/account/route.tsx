@@ -1,5 +1,5 @@
+import { Outlet, createFileRoute } from "@tanstack/react-router";
 import Header from "./header";
-import { createFileRoute, Outlet } from "@tanstack/react-router";
 import { useDictionary } from "~/components/provider/dictionary-provider";
 
 export const Route = createFileRoute("/$lang/account")({

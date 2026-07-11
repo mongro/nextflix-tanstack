@@ -1,8 +1,11 @@
 import { useCallback } from "react";
 
-import Thumbnail, { ThumbnailProps } from "./thumbnail";
-import { MediaType, getMediaType } from "~/lib/tmdb/requests";
-import { ModalOptions, useModalContext } from "../provider/modal-provider";
+import { useModalContext } from "../provider/modal-provider";
+import Thumbnail from "./thumbnail";
+import type { ThumbnailProps } from "./thumbnail";
+import type { MediaType} from "~/lib/tmdb/requests";
+import type { ModalOptions} from "../provider/modal-provider";
+import { getMediaType } from "~/lib/tmdb/requests";
 
 export default function MovieThumbnail({
   options,

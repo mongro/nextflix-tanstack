@@ -1,6 +1,8 @@
-import { Locale } from "~/i18n/config";
 import { api } from "./config";
 import {
+  Season
+} from "./types";
+import type {
   Credits,
   EpisodeImages,
   List,
@@ -9,12 +11,11 @@ import {
   Person,
   PersonCombinedCredits,
   PersonDetails,
-  Season,
   SeasonDetails,
   Show,
   ShowDetails,
-  Videos,
-} from "./types";
+  Videos} from "./types";
+import type { Locale } from "~/i18n/config";
 
 export const getMediaType = (
   media: Show | Movie | MovieDetails | ShowDetails,
@@ -112,7 +113,7 @@ export const getLatest = <T extends MediaType>(type: T) =>
 const getDetails = <T extends MediaType>(
   id: number,
   type: T,
-  appendQueries?: string[],
+  appendQueries?: Array<string>,
   lang?: Locale,
 ) =>
   api<Data<T>>({

@@ -1,4 +1,4 @@
-import { Crew, Genre, SpokenLanguage } from ".";
+import type { Crew, Genre, SpokenLanguage } from ".";
 
 interface EpisodeImage {
   file_path: string;
@@ -9,13 +9,13 @@ interface EpisodeImage {
 
 export interface EpisodeImages {
   id: number;
-  stills: EpisodeImage[];
+  stills: Array<EpisodeImage>;
 }
 
 export interface Episode {
   air_date: string;
   episode_number: number;
-  crew: Crew[];
+  crew: Array<Crew>;
   id: number;
   name: string;
   overview: string;
@@ -40,7 +40,7 @@ export interface Season {
 
 export interface SeasonDetails {
   air_date: string;
-  episodes: Episode[];
+  episodes: Array<Episode>;
   name: string;
   overview: string;
   id: number;
@@ -53,8 +53,8 @@ export interface Show {
   name: string;
   first_air_date: string;
   backdrop_path: string;
-  genre_ids: number[];
-  origin_country: string[];
+  genre_ids: Array<number>;
+  origin_country: Array<string>;
   original_language: string;
   original_name: string;
   overview: string;
@@ -70,25 +70,25 @@ export interface ShowWithMediaType extends Show {
 
 export interface ShowDetails {
   backdrop_path: string;
-  episode_run_time: number[];
+  episode_run_time: Array<number>;
   first_air_date: string;
-  genres: Genre[];
+  genres: Array<Genre>;
   homepage: string;
   id: number;
   in_production: boolean;
-  languages: string[];
+  languages: Array<string>;
   last_air_date: string;
   name: string;
   number_of_episodes: number;
   number_of_seasons: number;
-  origin_country: string[];
+  origin_country: Array<string>;
   original_language: string;
   original_name: string;
   overview: string;
   popularity: number;
   poster_path: string;
-  seasons: Season[];
-  spoken_languages: SpokenLanguage[];
+  seasons: Array<Season>;
+  spoken_languages: Array<SpokenLanguage>;
   status: string;
   tagline: string;
   type: string;

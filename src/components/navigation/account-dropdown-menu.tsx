@@ -1,3 +1,4 @@
+import { useNavigate } from "@tanstack/react-router";
 import {
   DropdownMenu,
   DropdownTrigger,
@@ -6,12 +7,11 @@ import {
   MenuPortal,
 } from "../ui/dropdown";
 import { Button } from "../ui/button";
-import { useSignOut } from "~/lib/auth/auth-client";
 import Avatar from "../ui/avatar";
-import { useNavigate } from "@tanstack/react-router";
-import { Locale } from "~/i18n/config";
 import { useDictionary } from "../provider/dictionary-provider";
-import { Profile } from "~/lib/generated/prisma/client";
+import type { Locale } from "~/i18n/config";
+import type { Profile } from "~/lib/generated/prisma/client";
+import { useSignOut } from "~/lib/auth/auth-client";
 
 type AccountDropdownProps = {
   lang: Locale;

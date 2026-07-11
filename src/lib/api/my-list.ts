@@ -7,10 +7,10 @@ import {
 } from "@tanstack/react-query";
 /* import { ApiResponseIsInMyList } from "@/app/api/account/profile/[profileId]/mylist/[movieId]/route";
 import { ApiResponseListOfProfile } from "@/app/api/account/profile/[profileId]/mylist/route"; */
+import { useServerFn } from "@tanstack/react-start";
 import { addToMyList, removeFromMyList } from "../dal/my-list/actions";
 import { getMyList, isInMyList } from "../dal/my-list/queries";
-import { ProfileMovie } from "../generated/prisma/client";
-import { useServerFn } from "@tanstack/react-start";
+import type { ProfileMovie } from "../generated/prisma/client";
 
 export const MY_LIST_QUERYKEY = "mylist";
 
@@ -32,7 +32,7 @@ export const isInMyListQueryOptions = (
   profileId: ProfileMovie["profileId"] | undefined | null,
   movieId: ProfileMovie["movieId"],
 ) => {
-  //const getIsInMyList = useServerFn(isInMyList);
+  // const getIsInMyList = useServerFn(isInMyList);
   return queryOptions({
     queryKey: [MY_LIST_QUERYKEY, profileId, movieId],
     queryFn: profileId

@@ -1,11 +1,12 @@
 import { AnimatePresence, m } from "motion/react";
-import { Movie, MovieDetails, Show, ShowDetails } from "~/lib/tmdb/types";
+import type { MovieDetails, ShowDetails } from "~/lib/tmdb/types";
+import { Movie, Show } from "~/lib/tmdb/types";
 import MovieThumbnail from "~/components/collection/movie-thumbnail";
 
 export default function Page({
   myList,
 }: {
-  myList: (MovieDetails | ShowDetails)[];
+  myList: Array<MovieDetails | ShowDetails>;
 }) {
   return (
     <div className="grid gap-4 grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">

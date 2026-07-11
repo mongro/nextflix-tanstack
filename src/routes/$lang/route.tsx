@@ -1,10 +1,10 @@
 import "~/styles/app.css";
 import "swiper/swiper.css";
-import { createFileRoute, redirect, Outlet } from "@tanstack/react-router";
+import { Outlet, createFileRoute, redirect } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
+import type { Locale } from "~/i18n/config";
 import DictionaryProvider from "~/components/provider/dictionary-provider";
 import { getDictionary, isValidLocale } from "~/i18n/getDictionary";
-import { Locale } from "~/i18n/config";
 
 const getDictionaryFn = createServerFn()
   .validator((data: { lang: Locale }) => data)
@@ -15,7 +15,7 @@ const getDictionaryFn = createServerFn()
   });
 
 export const Route = createFileRoute("/$lang")({
-  beforeLoad: async ({ params, preload, location }) => {
+  beforeLoad: ({ params, preload, location }) => {
     const { lang } = params;
 
     // Type-safe locale validation
@@ -26,7 +26,7 @@ export const Route = createFileRoute("/$lang")({
       });
     }
     return {
-      lang: (lang as Locale) || "en",
+      lang: lang as Locale,
     };
   },
   loader: async ({ params, context }) => {

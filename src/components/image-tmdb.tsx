@@ -22,7 +22,6 @@ const generateSrcSet = ({
   };
 };
 
-// eslint-disable-next-line react/display-name
 const ImageWithTmdbUrl = React.forwardRef(
   ({ src, ...props }: React.ImgHTMLAttributes<HTMLImageElement>, ref) => {
     const { url, srcset } = generateSrcSet({

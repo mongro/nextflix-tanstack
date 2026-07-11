@@ -1,7 +1,7 @@
-import { DictionaryButtons } from "~/i18n/type";
 import Image from "./image-tmdb";
-import { List, Movie } from "~/lib/tmdb/types";
 import PromotedButtons from "./promoted-buttons";
+import type { List, Movie } from "~/lib/tmdb/types";
+import type { DictionaryButtons } from "~/i18n/type";
 
 interface Props {
   promise: List<Movie>;

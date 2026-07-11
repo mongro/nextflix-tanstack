@@ -1,8 +1,8 @@
+import { MinusIcon, PlusIcon } from "@heroicons/react/24/solid";
+import { Tooltip } from "../ui/tooltip";
+import { useDictionary } from "../provider/dictionary-provider";
 import { useIsInMyList, useToggleMyList } from "~/lib/api/my-list";
 import IconButton from "~/components/ui/icon-button";
-import { Tooltip } from "../ui/tooltip";
-import { MinusIcon, PlusIcon } from "@heroicons/react/24/solid";
-import { useDictionary } from "../provider/dictionary-provider";
 
 interface Props {
   movieId: string;

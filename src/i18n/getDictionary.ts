@@ -1,4 +1,5 @@
-import { Locale } from "./config";
+import type { Locale } from "./config";
+
 const dictionaries = {
   en: () => import("./en.json").then((module) => module.default),
   de: () => import("./de.json").then((module) => module.default),

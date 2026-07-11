@@ -1,17 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useActionState, useState, useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
-import {
-  Field,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-} from "~/components/ui/field";
-import { Input } from "../ui/input";
-import { Button } from "~/components/ui/button";
 import z from "zod";
-import { createProfileState, updateProfile } from "~/lib/dal/profile";
-import { AvatarSelect } from "./avatar-select";
+import { ArrowLeftIcon, PencilIcon } from "@heroicons/react/24/solid";
+import { useQueryClient } from "@tanstack/react-query";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { Input } from "../ui/input";
 import {
   Dialog,
   DialogContent,
@@ -19,12 +13,19 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
-import { ArrowLeftIcon, PencilIcon } from "@heroicons/react/24/solid";
-import Avatar from "~/components/ui/avatar";
-import { useQueryClient } from "@tanstack/react-query";
 import { Spinner } from "../ui/spinner";
-import { Link, useNavigate } from "@tanstack/react-router";
-import { Profile } from "@/lib/generated/prisma/client";
+import { AvatarSelect } from "./avatar-select";
+import type { createProfileState } from "~/lib/dal/profile";
+import type { Profile } from "@/lib/generated/prisma/client";
+import {
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "~/components/ui/field";
+import { Button } from "~/components/ui/button";
+import { updateProfile } from "~/lib/dal/profile";
+import Avatar from "~/components/ui/avatar";
 
 type CreateProfileFormData = {
   name: string;
@@ -48,10 +49,9 @@ export function UpdateProfileForm({ profile }: { profile: Profile }) {
     prevState: createProfileState,
     formData: FormData,
   ) => {
-    const result = await updateProfile({ data: formData  });
-    if (!result.error && profile) {
+    const result = await updateProfile({ data: formData });
+    if (!result.error) {
       queryClient.refetchQueries({ queryKey: ["profile"] });
-      console.log("client", window ? "client" : "server");
       navigate({
         from: "/$lang",
         to: "./account/profiles/$id",
@@ -71,7 +71,7 @@ export function UpdateProfileForm({ profile }: { profile: Profile }) {
     defaultValues: {
       name: profile.name,
       id: profile.id,
-      avatar: profile.avatar ?? "",
+      avatar: profile.avatar,
     },
   });
 
@@ -133,8 +133,7 @@ export function UpdateProfileForm({ profile }: { profile: Profile }) {
                   placeholder="Name"
                   autoComplete="off"
                   hidden
-                  value={field.value ?? ""}
-                  disabled={field.value === null}
+                  value={field.value}
                 />
               </Field>
             )}

@@ -6,7 +6,7 @@ export interface List<T> {
   page: number;
   total_results: number;
   total_pages: number;
-  results: T[];
+  results: Array<T>;
 }
 
 export interface SpokenLanguage {
@@ -22,7 +22,7 @@ export interface Genre {
 
 export interface Videos {
   id: number;
-  results: Video[];
+  results: Array<Video>;
 }
 export interface Video {
   size: number;
@@ -64,6 +64,6 @@ export interface Crew {
 
 export interface Credits {
   id: number;
-  cast: Cast[];
-  crew: Crew[];
+  cast: Array<Cast>;
+  crew: Array<Crew>;
 }

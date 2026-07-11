@@ -1,11 +1,11 @@
 import "~/styles/app.css";
 import "swiper/swiper.css";
 import {
-  createFileRoute,
-  redirect,
-  Outlet,
   HeadContent,
+  Outlet,
+  createFileRoute,
   getRouteApi,
+  redirect,
 } from "@tanstack/react-router";
 import ModalProvider from "~/components/provider/modal-provider";
 import Header from "~/components/header";

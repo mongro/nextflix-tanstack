@@ -1,11 +1,11 @@
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
+import { Link, getRouteApi } from "@tanstack/react-router";
 import Avatar from "../ui/avatar";
-import { getRouteApi, Link } from "@tanstack/react-router";
-import { Profile } from "@/lib/generated/prisma/client";
+import type { Profile } from "@/lib/generated/prisma/client";
 import { useSession } from "~/lib/auth/auth-client";
 
 type ProfilesProps = {
-  profiles: Profile[];
+  profiles: Array<Profile>;
 };
 export function Profiles({ profiles }: ProfilesProps) {
   const session = useSession();

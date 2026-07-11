@@ -1,17 +1,10 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useActionState, useState, useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
-import {
-  Field,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-} from "~/components/ui/field";
-import { Input } from "../ui/input";
-import { Button } from "~/components/ui/button";
 import z from "zod";
-import { createProfile, createProfileState } from "~/lib/dal/profile";
-import { AvatarSelect } from "./avatar-select";
+import { PencilIcon } from "@heroicons/react/24/solid";
+import { useRouter } from "@tanstack/react-router";
+import { Input } from "../ui/input";
 import {
   Dialog,
   DialogContent,
@@ -20,11 +13,19 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
-import { PencilIcon } from "@heroicons/react/24/solid";
+import { Spinner } from "../ui/spinner";
+import { AvatarSelect } from "./avatar-select";
+import type { createProfileState } from "~/lib/dal/profile";
+import {
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "~/components/ui/field";
+import { Button } from "~/components/ui/button";
+import { createProfile } from "~/lib/dal/profile";
 import Avatar from "~/components/ui/avatar";
 import smiley from "~/assets/avatars/smiley.png";
-import { Spinner } from "../ui/spinner";
-import { useRouter } from "@tanstack/react-router";
 
 type CreateProfileFormData = {
   name: string;
@@ -116,8 +117,7 @@ export function CreateProfileForm({ onSuccess }: { onSuccess: () => void }) {
                 placeholder="Name"
                 autoComplete="off"
                 hidden
-                value={field.value ?? ""}
-                disabled={field.value === null}
+                value={field.value}
               />
             </Field>
           )}

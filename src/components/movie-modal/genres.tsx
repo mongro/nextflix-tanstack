@@ -2,7 +2,7 @@ interface Genre {
   name: string;
 }
 interface Props {
-  genres: Genre[];
+  genres: Array<Genre>;
 }
 function Genres({ genres }: Props) {
   return (

@@ -1,13 +1,13 @@
-import React, { useState, useLayoutEffect, useRef } from "react";
-import Image from "~/components/image-tmdb";
-import { formatToPercentage, formatToYear } from "../../utils/format";
-import IconButton from "~/components/ui/icon-button";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
-import { Movie, Show } from "~/lib//tmdb/types";
+import { formatToPercentage, formatToYear } from "../../utils/format";
 import { useDictionary } from "../provider/dictionary-provider";
+import type { Movie, Show } from "~/lib//tmdb/types";
+import Image from "~/components/image-tmdb";
+import IconButton from "~/components/ui/icon-button";
 
 interface Props {
-  similarTitles: (Show | Movie)[];
+  similarTitles: Array<Show | Movie>;
 }
 
 const MAX_HEIGHT = 1000;
@@ -38,7 +38,7 @@ function Similar({ similarTitles }: Props) {
         }`}
         ref={container}
       >
-        {similarTitles?.map((opus) => {
+        {similarTitles.map((opus) => {
           return (
             <div key={opus.id} className="w-full bg-neutral-900 rounded">
               <div className="relative w-full aspect-video">

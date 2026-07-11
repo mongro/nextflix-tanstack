@@ -1,12 +1,11 @@
-import { signUp } from "~/lib/auth/actions";
-import {
-  SignUpActionState,
-  SignUpFormData,
-  signUpFormSchema,
-} from "~/lib/auth/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useActionState, useEffect, useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { useQueryClient } from "@tanstack/react-query";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
 import {
   Field,
   FieldDescription,
@@ -14,11 +13,13 @@ import {
   FieldGroup,
   FieldLabel,
 } from "../ui/field";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { useQueryClient } from "@tanstack/react-query";
-import { Link, useNavigate } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
+import type {
+  SignUpActionState,
+  SignUpFormData} from "~/lib/auth/schema";
+import {
+  signUpFormSchema,
+} from "~/lib/auth/schema";
+import { signUp } from "~/lib/auth/actions";
 import { refreshSession, sessionQueryKey } from "~/lib/auth/auth-client";
 
 export function SignUpForm() {

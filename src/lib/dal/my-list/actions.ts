@@ -1,11 +1,11 @@
 import { createServerFn } from "@tanstack/react-start";
+import type { ProfileMovie } from "~/lib/generated/prisma/client";
 import {
   canChangeProfile,
   verifiyServerSession,
 } from "~/lib/auth/authorization";
 import { db } from "~/lib/db";
-import { ProfileMovie } from "~/lib/generated/prisma/client";
-//import { revalidatePath } from "next/cache";
+// import { revalidatePath } from "next/cache";
 
 export const addToMyList = createServerFn({ method: "POST" })
   .validator(

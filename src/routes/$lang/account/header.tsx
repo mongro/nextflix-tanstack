@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { DictionaryHeader } from "~/i18n/type";
-import { Locale } from "~/i18n/config";
+import type { DictionaryHeader } from "~/i18n/type";
+import type { Locale } from "~/i18n/config";
 import AccountActionClient from "~/components/navigation/account-action-client";
 
 function Header({

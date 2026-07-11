@@ -1,11 +1,11 @@
 import HandThumbUpIcon from "@heroicons/react/24/solid/HandThumbUpIcon";
-import IconButton from "~/components/ui/icon-button";
 import HandThumbDownIcon from "@heroicons/react/24/solid/HandThumbDownIcon";
 import HandThumbDownIconOutline from "@heroicons/react/24/outline/HandThumbDownIcon";
 import HandThumbUpIconOutline from "@heroicons/react/24/outline/HandThumbUpIcon";
 import { Tooltip } from "../ui/tooltip";
-import { useGiveRating, useRating, useRemoveRating } from "~/lib/api/rating";
 import { useDictionary } from "../provider/dictionary-provider";
+import { useGiveRating, useRating, useRemoveRating } from "~/lib/api/rating";
+import IconButton from "~/components/ui/icon-button";
 
 type Props = {
   movieId: string;

@@ -1,7 +1,7 @@
+import { ArrowLeftIcon } from "@heroicons/react/24/solid";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import { ProfileSettings } from "~/components/profile/profile-settings";
 import { getProfile } from "~/lib/dal/profile";
-import { ArrowLeftIcon } from "@heroicons/react/24/solid";
-import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/$lang/account/profiles/$id/")({
   component: Page,
@@ -14,7 +14,6 @@ function Page() {
   const { profile, error } = Route.useLoaderData();
 
   if (error) return <div>{error.message}</div>;
-  if (!profile) return <div>No profile found</div>;
 
   return (
     <div>

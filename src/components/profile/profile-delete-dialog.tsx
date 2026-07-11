@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import { Button } from "../ui/button";
 import {
   Dialog,
@@ -11,7 +12,6 @@ import {
 } from "../ui/dialog";
 import { Spinner } from "../ui/spinner";
 import { useDeleteProfile } from "~/lib/api/profile";
-import { useNavigate } from "@tanstack/react-router";
 
 export function ProfileDeleteDialog({ profileId }: { profileId: number }) {
   const [showDialog, setShowDialog] = useState(false);

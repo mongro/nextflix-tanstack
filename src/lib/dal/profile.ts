@@ -1,11 +1,11 @@
-//import { revalidatePath } from "next/cache";
+// import { revalidatePath } from "next/cache";
 import { redirect } from "@tanstack/react-router";
+import z from "zod";
+import { createServerFn } from "@tanstack/react-start";
 import { verifiyServerSession } from "../auth/authorization";
 import { db } from "../db/index";
 import { MutationResponseWithoutData, verifyProfileAccess } from "./utils";
-import z from "zod";
-import { createServerFn } from "@tanstack/react-start";
-import { Profile } from "../generated/prisma/client";
+import type { Profile } from "../generated/prisma/client";
 
 export const getProfile = createServerFn({ method: "GET" })
   .validator((data: { id: number }) => data)
@@ -114,7 +114,7 @@ export const deleteProfile = createServerFn({ method: "POST" })
       return { error: { message: "Couldnt delete profile." }, profile: null };
     }
 
-    //redirection
+    // redirection
   });
 
 export const selectProfile = createServerFn({ method: "POST" })

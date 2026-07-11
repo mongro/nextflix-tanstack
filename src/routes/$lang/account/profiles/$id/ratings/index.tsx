@@ -1,7 +1,7 @@
+import { createFileRoute } from "@tanstack/react-router";
 import { Ratings } from "~/components/profile/ratings";
 import { getProfile } from "~/lib/dal/profile";
 import { getRatings } from "~/lib/dal/ratings/queries";
-import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/$lang/account/profiles/$id/ratings/")({
   component: RatingsPage,

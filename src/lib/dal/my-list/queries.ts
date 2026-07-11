@@ -1,12 +1,12 @@
+import { createServerFn } from "@tanstack/react-start";
+import { verifyProfileAccess } from "../utils";
+import type { ProfileMovie } from "~/lib/generated/prisma/client";
 import {
   getServerSession,
   verifiyServerSession,
 } from "~/lib/auth/authorization";
 import { db } from "~/lib/db";
 import prisma from "~/lib/prisma";
-import { verifyProfileAccess } from "../utils";
-import { createServerFn } from "@tanstack/react-start";
-import { ProfileMovie } from "~/lib/generated/prisma/client";
 
 export const getMyList = createServerFn({ method: "GET" }).handler(async () => {
   const session = await verifiyServerSession();

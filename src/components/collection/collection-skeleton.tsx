@@ -1,4 +1,4 @@
-//fix children missing key prop
+// fix children missing key prop
 
 function CarouselSkeleton() {
   return (

@@ -1,9 +1,9 @@
-import { Movie, Show } from "~/lib/tmdb/types";
 import Carousel from "./carousel";
 import MovieThumbnail from "./movie-thumbnail";
+import type { Movie, Show } from "~/lib/tmdb/types";
 
 interface Props {
-  items: Show[] | Movie[];
+  items: Array<Show> | Array<Movie>;
   collection: string;
 }
 

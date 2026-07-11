@@ -1,7 +1,7 @@
-import React, { useRef, memo } from "react";
+import React, { memo, useRef } from "react";
 import Image from "../image-tmdb";
+import type { Movie, MovieDetails, Show, ShowDetails } from "~/lib/tmdb/types";
 import { getMediaTitle } from "~/lib/tmdb/requests";
-import { Movie, MovieDetails, Show, ShowDetails } from "~/lib/tmdb/types";
 
 export interface ThumbnailProps {
   onHoverDelay?: number;
