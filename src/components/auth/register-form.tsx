@@ -49,11 +49,12 @@ export function SignUpForm() {
 
   useEffect(() => {
     if (actionState.success) {
-      void refreshSession(queryClient)
-        .catch(() => queryClient.removeQueries({ queryKey: sessionQueryKey }))
-        .finally(() => {
-          navigate({ from: "/$lang/auth/register/", to: "/$lang" });
-        });
+      try {
+        refreshSession(queryClient);
+      } catch {
+        queryClient.removeQueries({ queryKey: sessionQueryKey });
+      }
+      navigate({ from: "/$lang/auth/login/", to: "/$lang" });
     }
   }, [actionState.success, navigate, queryClient]);
 
