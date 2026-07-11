@@ -4,6 +4,7 @@ import { Spinner } from "../ui/spinner";
 import { useState } from "react";
 import { signUpAnonym } from "~/lib/auth/actions";
 import { useNavigate } from "@tanstack/react-router";
+import { refreshSession, sessionQueryKey } from "~/lib/auth/auth-client";
 
 export function SignUpAnonym() {
   const [isLoading, setIsLoading] = useState(false);
@@ -16,7 +17,11 @@ export function SignUpAnonym() {
     const success = await signUpAnonym();
     setIsLoading(false);
     if (success) {
-      queryClient.refetchQueries({ queryKey: ["session"] });
+      try {
+        await refreshSession(queryClient);
+      } catch {
+        queryClient.removeQueries({ queryKey: sessionQueryKey });
+      }
       navigate({ from: "/$lang/auth/login/", to: "/$lang" });
     }
   };

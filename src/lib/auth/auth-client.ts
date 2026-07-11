@@ -14,23 +14,47 @@ export const authClient = createAuthClient({
 });
 
 export type Session = typeof authClient.$Infer.Session;
+export type SessionQueryData = Awaited<
+  ReturnType<typeof authClient.getSession>
+>;
 
-export const sessionQueryKey = ["session"];
+export const sessionQueryKey = ["session"] as const;
+export const sessionStaleTime = 5 * 60_000;
+
 export const getSessionQueryOptions = () => {
   return queryOptions({
     queryKey: sessionQueryKey,
-    queryFn: () => {
-      return authClient.getSession();
-    },
+    queryFn: () => authClient.getSession(),
+    staleTime: sessionStaleTime,
   });
+};
+
+export const refreshSession = (queryClient: QueryClient) => {
+  queryClient.refetchQueries(getSessionQueryOptions());
+};
+
+export const hasFreshUnauthenticatedSession = (queryClient: QueryClient) => {
+  const queryState =
+    queryClient.getQueryState<SessionQueryData>(sessionQueryKey);
+
+  return (
+    queryState?.status === "success" &&
+    !queryState.isInvalidated &&
+    !queryState.data?.isStale &&
+    queryState.data?.data === null
+  );
 };
 
 export const useSignOut = (onSuccess?: () => void) =>
   useMutation({
     mutationFn: async () => await authClient.signOut(),
-    onSuccess: (data, variables, onMutateResult, context) => {
+    onSuccess: async (data, variables, onMutateResult, context) => {
       console.log("successfully loggedOut");
-      context.client.refetchQueries({ queryKey: ["session"] });
+      try {
+        await refreshSession(context.client);
+      } catch {
+        context.client.removeQueries({ queryKey: sessionQueryKey });
+      }
       if (onSuccess) {
         onSuccess();
       }

@@ -19,6 +19,7 @@ import { Button } from "../ui/button";
 import { useQueryClient } from "@tanstack/react-query";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
+import { refreshSession, sessionQueryKey } from "~/lib/auth/auth-client";
 
 export function SignUpForm() {
   const register = useServerFn(signUp);
@@ -48,8 +49,11 @@ export function SignUpForm() {
 
   useEffect(() => {
     if (actionState.success) {
-      queryClient.refetchQueries({ queryKey: ["session"] });
-      navigate({ from: "/$lang/auth/register/", to: "/$lang" });
+      void refreshSession(queryClient)
+        .catch(() => queryClient.removeQueries({ queryKey: sessionQueryKey }))
+        .finally(() => {
+          navigate({ from: "/$lang/auth/register/", to: "/$lang" });
+        });
     }
   }, [actionState.success, navigate, queryClient]);
 

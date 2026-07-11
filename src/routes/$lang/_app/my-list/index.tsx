@@ -2,15 +2,43 @@ import { getModalInfos } from "~/lib/tmdb/requests";
 import MyList from "./my-list";
 import { parseInternalId } from "~/lib/tmdb/util";
 import { getMyList } from "~/lib/dal/my-list/queries";
-import { createFileRoute, getRouteApi } from "@tanstack/react-router";
+import { createFileRoute, getRouteApi, redirect } from "@tanstack/react-router";
+import { createIsomorphicFn } from "@tanstack/react-start";
+import { getRequestHeaders } from "@tanstack/react-start/server";
+import { getSessionCookie } from "better-auth/cookies";
+import { Spinner } from "~/components/ui/spinner";
+import { hasFreshUnauthenticatedSession } from "~/lib/auth/auth-client";
+
+const hasSessionCookie = createIsomorphicFn()
+  .server(() => Boolean(getSessionCookie(getRequestHeaders())))
+  .client(() => true);
 
 export const Route = createFileRoute("/$lang/_app/my-list/")({
+  pendingMs: 0,
+  pendingMinMs: 0,
+  pendingComponent: () => (
+    <div className="mt-16 grid min-h-48 place-items-center">
+      <Spinner className="size-6" />
+    </div>
+  ),
   component: Page,
   headers: () => ({
-    "Cache-Control":
-      "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400",
+    "Cache-Control": "private, no-store",
   }),
   staleTime: 0,
+  beforeLoad: ({ context }) => {
+    if (
+      !hasSessionCookie() ||
+      hasFreshUnauthenticatedSession(context.queryClient)
+    ) {
+      throw redirect({
+        to: "/$lang/auth/login",
+        params: { lang: context.lang || "en" },
+      });
+    }
+
+    return;
+  },
   loader: async () => {
     const myListIds = await getMyList();
     const myListPromises = myListIds.map((item) => {

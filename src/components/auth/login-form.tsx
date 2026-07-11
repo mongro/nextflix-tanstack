@@ -14,6 +14,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
+import { refreshSession, sessionQueryKey } from "~/lib/auth/auth-client";
 
 export function SignInForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -41,10 +42,14 @@ export function SignInForm() {
 
   useEffect(() => {
     if (actionState.success) {
-      queryClient.refetchQueries({ queryKey: ["session"] });
+      try {
+        refreshSession(queryClient);
+      } catch {
+        queryClient.removeQueries({ queryKey: sessionQueryKey });
+      }
       navigate({ from: "/$lang/auth/login/", to: "/$lang" });
     }
-  }, [actionState.success, navigate]);
+  }, [actionState.success, navigate, queryClient]);
 
   const toggleSetShowPassword = () => {
     setShowPassword((value) => !value);
