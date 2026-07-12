@@ -4,7 +4,7 @@ import { APIError } from "better-auth/api";
 import { redirect } from "@tanstack/react-router";
 import { createProfile } from "../db/profile";
 import { signInFormSchema, signUpFormSchema } from "./schema";
-import smiley from "~/assets/avatars/smiley.png";
+import smiley from "~/assets/avatars/smiley.webp";
 import { auth } from "~/lib/auth/auth";
 
 export const signIn = createServerFn({ method: "POST" })
@@ -48,7 +48,7 @@ export const signIn = createServerFn({ method: "POST" })
     }
   });
 
-export const signUp = createServerFn({ method: "GET" })
+export const signUp = createServerFn({ method: "POST" })
   .validator((data) => {
     if (!(data instanceof FormData)) {
       throw new Error("Expected FormData");
@@ -98,7 +98,7 @@ export const signUp = createServerFn({ method: "GET" })
     }
   });
 
-export const signUpAnonym = createServerFn({ method: "GET" }).handler(
+export const signUpAnonym = createServerFn({ method: "POST" }).handler(
   async () => {
     const name = "User";
     const password = "placeholder";

@@ -25,7 +25,7 @@ import {
 import { Button } from "~/components/ui/button";
 import { createProfile } from "~/lib/dal/profile";
 import Avatar from "~/components/ui/avatar";
-import smiley from "~/assets/avatars/smiley.png";
+import smiley from "~/assets/avatars/smiley.webp";
 
 type CreateProfileFormData = {
   name: string;
