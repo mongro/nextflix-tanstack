@@ -28,7 +28,7 @@ export default function AccountDropdown({
   return (
     <DropdownMenu label="account">
       <DropdownTrigger asChild>
-        <Button>
+        <Button aria-label="account-button">
           <Avatar
             alt="profilePicure"
             className="size-8"

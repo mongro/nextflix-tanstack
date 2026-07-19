@@ -53,3 +53,12 @@ export async function removeFromMyList(
 
   return result;
 }
+export async function deleteList(profileId: ProfileMovie["profileId"]) {
+  const result = await prisma.profileMovie.deleteMany({
+    where: {
+      profileId: profileId,
+    },
+  });
+
+  return result;
+}

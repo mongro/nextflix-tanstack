@@ -37,7 +37,12 @@ export function MovieRatingButtons({ movieId, profileId }: Props) {
     <>
       <Tooltip.Root placement="top">
         <Tooltip.Trigger asChild>
-          <IconButton variant={"secondary"} onClick={handleThumbUpClick}>
+          <IconButton
+            variant={"secondary"}
+            onClick={handleThumbUpClick}
+            aria-label={dictionary.buttons.thumbsUp}
+            aria-pressed={data?.rating === "UP"}
+          >
             {data?.rating === "UP" ? (
               <HandThumbUpIcon />
             ) : (
@@ -49,7 +54,12 @@ export function MovieRatingButtons({ movieId, profileId }: Props) {
       </Tooltip.Root>
       <Tooltip.Root placement="top">
         <Tooltip.Trigger asChild>
-          <IconButton variant={"secondary"} onClick={handleThumbDownClick}>
+          <IconButton
+            variant={"secondary"}
+            onClick={handleThumbDownClick}
+            aria-label={dictionary.buttons.thumbsDown}
+            aria-pressed={data?.rating === "DOWN"}
+          >
             {data?.rating === "DOWN" ? (
               <HandThumbDownIcon />
             ) : (

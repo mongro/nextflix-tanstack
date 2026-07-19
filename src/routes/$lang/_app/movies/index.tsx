@@ -23,7 +23,6 @@ const getMoviesData = createServerFn()
     // This runs only on the server
     const promoted = await getNowPlaying(data.lang);
     const popular = getPopular("movie", data.lang);
-    console.log("Loader data for movies route:", { promoted, popular });
     setResponseHeaders(
       new Headers({
         "Cache-Control": "private, max-age=3600",
@@ -94,17 +93,18 @@ function RouteComponent() {
   return (
     <div>
       <Promoted promise={promoted} dictionary={dictionary.buttons} />
+
+      {genreList.map((genre, i) => (
+        <Suspense fallback={<CarouselSkeleton />} key={genre}>
+          <Collection collection={collectionByGenre[i]} title={genres[genre]} />
+        </Suspense>
+      ))}
       <Suspense fallback={<CarouselSkeleton />}>
         <CollectionStreamed
           collection={popular}
           title={dictionary.header.popularMovies}
         />
       </Suspense>
-      {genreList.map((genre, i) => (
-        <Suspense fallback={<CarouselSkeleton />} key={genre}>
-          <Collection collection={collectionByGenre[i]} title={genres[genre]} />
-        </Suspense>
-      ))}
     </div>
   );
 }

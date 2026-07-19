@@ -40,6 +40,7 @@ export const isInMyListQueryOptions = (
       : skipToken,
   });
 };
+
 export const getMyListQueryOptions = (
   profileId: ProfileMovie["profileId"] | undefined | null,
 ) => {
@@ -73,6 +74,9 @@ export function useIsInMyList(
       const myList = queryClient.getQueryData(
         getMyListQueryOptions(profileId).queryKey,
       );
+      myList?.forEach((item) => {
+        console.log("item in myList:", item);
+      });
       return myList?.some((item) => item.movieId === movieId);
     },
     initialDataUpdatedAt: () =>

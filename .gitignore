@@ -19,3 +19,6 @@ dist
 /playwright/.cache/
 
 /src/generated/prisma
+
+# Playwright
+/playwright/.auth/
