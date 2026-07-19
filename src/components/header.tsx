@@ -81,7 +81,6 @@ function Header({
               lang={lang}
               onBlur={() => {
                 setShowSearchBar(false);
-                console.log("blurred");
               }}
             />
           ) : (

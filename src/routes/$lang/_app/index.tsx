@@ -26,7 +26,6 @@ export const Route = createFileRoute("/$lang/_app/")({
   loader: async ({ params, context }) => {
     const promoted = await getNowPlaying(context.lang);
     const popular = getPopular("movie", context.lang);
-    console.log("Loader data for movies route:", { promoted, popular });
 
     const genreList: Array<MovieGenreKey> = [
       "27",

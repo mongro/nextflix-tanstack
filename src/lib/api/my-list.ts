@@ -74,9 +74,6 @@ export function useIsInMyList(
       const myList = queryClient.getQueryData(
         getMyListQueryOptions(profileId).queryKey,
       );
-      myList?.forEach((item) => {
-        console.log("item in myList:", item);
-      });
       return myList?.some((item) => item.movieId === movieId);
     },
     initialDataUpdatedAt: () =>
@@ -94,7 +91,6 @@ export const useToggleMyList = (
       profileId,
       movieId,
     }: Pick<ProfileMovie, "profileId" | "movieId">) => {
-      console.log("isInMyList in mutateFn:", isInMyList);
       return !isInMyList
         ? addToMyList({ data: { profileId, movieId } })
         : removeFromMyList({ data: { profileId, movieId } });

@@ -14,7 +14,6 @@ export const getProfile = createServerFn({ method: "GET" })
       const { session, profile } = await verifyProfileAccess(data.id);
       return { profile, error: null };
     } catch (error) {
-      console.log(error);
       return { error: { message: "something went wrong" }, profile: null };
     }
   });
@@ -122,14 +121,12 @@ export const selectProfile = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     try {
       const { session, profile } = await verifyProfileAccess(data.id);
-      console.log(session.user.id);
       const result = await db.changeSelectedProfile(
         session.session.id,
         data.id,
       );
       return { success: true, error: null };
     } catch (error) {
-      console.log(error);
       return { error: { message: "something went wrong" }, success: false };
     }
   });

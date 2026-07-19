@@ -55,20 +55,16 @@ export const useDeleteProfile = (onSuccess?: () => void) => {
     mutationFn: ({ profileId }: { profileId: number }) =>
       deleteProfile({ data: { id: profileId } }),
     onSuccess: () => {
-      console.log("onSuccess");
       if (onSuccess) {
         onSuccess();
       }
     },
     onSettled: () => {
-      console.log("onSettled");
-
       if (onSuccess) {
         onSuccess();
       }
     },
     onError: () => {
-      console.log("onError");
       if (onSuccess) {
         onSuccess();
       }

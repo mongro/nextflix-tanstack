@@ -16,7 +16,6 @@ export const removeRating = createServerFn({ method: "POST" })
       const result = await db.removeRating(data.profileId, data.movieId);
       return result;
     } catch (error) {
-      console.log("error", error);
       return { error: { message: "Couldnt remove rating." }, success: false };
     }
   });
@@ -39,7 +38,6 @@ export const giveRating = createServerFn({ method: "POST" })
       );
       return result;
     } catch (error) {
-      console.log("error", error);
       return { error: { message: "Couldnt give rating." }, success: false };
     }
   });

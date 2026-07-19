@@ -104,7 +104,6 @@ export function CreateProfileForm({ onSuccess }: { onSuccess: () => void }) {
                   <AvatarSelect
                     onSelect={(avatar: string) => {
                       form.setValue("avatar", avatar);
-                      console.log("set avaatr", avatar);
                       setShowAvatarSelection(false);
                     }}
                   />

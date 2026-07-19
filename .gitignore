@@ -17,8 +17,9 @@ dist
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+CLAUDE.md
 
-/src/generated/prisma
+/src/lib/generated/prisma
 
 # Playwright
 /playwright/.auth/

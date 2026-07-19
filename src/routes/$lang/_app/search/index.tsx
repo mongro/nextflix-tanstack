@@ -21,7 +21,6 @@ export const Route = createFileRoute("/$lang/_app/search/")({
   },
   loaderDeps: ({ search: { person, q } }) => ({ person, q }),
   loader: async ({ context, deps }) => {
-    console.log("Loader called with deps:", deps);
     let people;
     let actorDetails;
     const { q, person } = deps;

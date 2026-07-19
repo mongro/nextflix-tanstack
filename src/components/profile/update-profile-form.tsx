@@ -120,7 +120,6 @@ export function UpdateProfileForm({ profile }: { profile: Profile }) {
                     <AvatarSelect
                       onSelect={(avatar: string) => {
                         form.setValue("avatar", avatar);
-                        console.log("set avaatr", avatar);
                         setShowAvatarSelection(false);
                       }}
                     />

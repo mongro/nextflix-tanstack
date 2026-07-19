@@ -8,8 +8,6 @@ export function useLastValidPage(excludedPath: string) {
     select: (location) => location.pathname,
   });
 
-  console.log("Current pathname:", pathname);
-
   useEffect(() => {
     if (!pathname.includes(excludedPath)) {
       lastValidPage = pathname;

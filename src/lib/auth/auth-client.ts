@@ -50,7 +50,6 @@ export const useSignOut = (onSuccess?: () => void) =>
   useMutation({
     mutationFn: async () => await authClient.signOut(),
     onSuccess: async (data, variables, onMutateResult, context) => {
-      console.log("successfully loggedOut");
       try {
         await refreshSession(context.client);
       } catch {

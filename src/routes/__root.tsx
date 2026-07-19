@@ -45,7 +45,6 @@ export const Route = createRootRouteWithContext<{
     const isRoot = location.pathname === "/";
 
     if (isRoot) {
-      console.log("Redirecting to locale...");
       await localeRedirect();
     }
   },

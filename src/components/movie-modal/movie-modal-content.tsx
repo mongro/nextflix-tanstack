@@ -94,18 +94,11 @@ const MovieInfoModal = React.forwardRef<HTMLDivElement, Props>(
                 key={videoUrl}
                 playing={true}
                 onReady={() => {
-                  console.log("Video is ready");
                   setIsPlaying(true);
                 }}
-                onWaiting={() => {
-                  console.log("Video is waiting");
-                }}
-                onError={() => {
-                  console.log("Video is error");
-                }}
-                onProgress={() => {
-                  console.log("Video is progressing");
-                }}
+                onWaiting={() => {}}
+                onError={() => {}}
+                onProgress={() => {}}
                 onEnded={() => {
                   setIsPlaying(false);
                 }}

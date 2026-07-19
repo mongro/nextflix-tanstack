@@ -9,10 +9,8 @@ const globalForPrisma = global as unknown as {
 };
 
 const connectionString = process.env.DATABASE_URL!;
-console.log(process.env.DATABASE_URL);
 
 const createPrismaClient = () => {
-  console.log("create PrismaClient", process.env.DATABASE_URL);
   // 1. Production / Neon Logic (WebSockets)
   if (
     process.env.NODE_ENV === "production" ||

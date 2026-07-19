@@ -35,7 +35,6 @@ export const signIn = createServerFn({ method: "POST" })
         success: true,
       };
     } catch (error) {
-      console.log("error", error);
       if (error instanceof APIError) {
         return {
           formData: parsedForm.data,
@@ -63,11 +62,9 @@ export const signUp = createServerFn({ method: "POST" })
   .handler(async (data) => {
     const { email, password, name } = data.data;
     const parsedForm = signUpFormSchema.safeParse({ email, password, name });
-    console.log("signUp");
 
     if (!parsedForm.success) {
       // If validation fails, return the form data and field errors
-      console.log("validation failed");
       return {
         formData: parsedForm.data,
         fieldErrors: parsedForm.error.flatten().fieldErrors,
@@ -84,8 +81,6 @@ export const signUp = createServerFn({ method: "POST" })
         success: true,
       };
     } catch (error) {
-      console.log(process.env.DATABASE_URL);
-      console.log(error);
       if (error instanceof APIError) {
         return {
           formData: parsedForm.data,
@@ -112,7 +107,6 @@ export const signUpAnonym = createServerFn({ method: "POST" }).handler(
         success: true,
       };
     } catch (error) {
-      console.log(error);
       if (error instanceof APIError) {
         return {
           success: false,

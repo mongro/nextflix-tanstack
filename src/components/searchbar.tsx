@@ -27,7 +27,6 @@ const SearchBar = ({ onBlur, lang, lastPage }: Props) => {
 
   const resetSearch = () => {
     setSearch("");
-    console.log("Resetting search, going to last valid page:", lastPage);
     goToLastValidPage();
   };
 
@@ -36,13 +35,11 @@ const SearchBar = ({ onBlur, lang, lastPage }: Props) => {
   };
 
   const handleSearch = (value: string) => {
-    console.log("Handling search with value:", value);
     setSearch(value);
     updateQuery(value);
   };
 
   const updateQuery = useDebouncedCallback((value: string) => {
-    console.log("Updating query with value:", value);
     if (!value) {
       goToLastValidPage();
       return;

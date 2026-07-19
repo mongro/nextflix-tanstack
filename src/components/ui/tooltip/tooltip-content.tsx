@@ -11,8 +11,6 @@ export function TooltipContent(props: TooltipContentProps) {
   const context = useTooltipContext();
 
   if (!context.open) return null;
-  console.log("isPos", context.isPositioned);
-  console.log(context.floatingStyles);
 
   return (
     <FloatingPortal>

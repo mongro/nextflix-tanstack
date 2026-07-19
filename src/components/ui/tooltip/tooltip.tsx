@@ -76,8 +76,6 @@ export function Tooltip({
     [open, data, getFloatingProps, getReferenceProps, context],
   );
 
-  console.log("Tooltip rendered", contextValue);
-
   return (
     <TooltipContext.Provider value={contextValue}>
       {children}

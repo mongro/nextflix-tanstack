@@ -14,7 +14,6 @@ export function ProfileSelect({ profiles }: ProfilesProps) {
     mutationFn: selectProfile,
 
     onSuccess: async (data, variables, onMutateResult, context) => {
-      console.log("success", data.success);
       await context.client.refetchQueries({ queryKey: ["session"] });
       navigate({ from: "/$lang/account", to: "/$lang" });
     },

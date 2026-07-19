@@ -45,7 +45,6 @@ export async function deleteProfile(id: number) {
 }
 
 export async function getUserProfile(id: number) {
-  console.log("get");
   const result = await prisma.profile.findUnique({
     where: { id },
   });

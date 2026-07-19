@@ -52,11 +52,9 @@ export const getInfiniteRatingsQueryOptions = (
   return infiniteQueryOptions({
     queryKey: ["ratings", profileId],
     queryFn: ({ pageParam }: { pageParam?: string }) => {
-      console.log("pageParam in queryFn:", pageParam);
       return getRatings({ data: { profileId, cursor: pageParam, take } });
     },
     getNextPageParam: (lastPage) => {
-      console.log("lastPage in getNextPageParam:", lastPage);
       return lastPage.length > take - 1
         ? lastPage[lastPage.length - 1]?.movieId
         : undefined;
@@ -79,7 +77,6 @@ export const useGiveRating = () => {
     onMutate: async ({ profileId, movieId, rating }, context) => {
       const queryKey = getRatingQueryOptions(profileId, movieId).queryKey;
       await context.client.cancelQueries({ queryKey });
-      console.log("cancelQueryKey", queryKey);
       const previousRating = context.client.getQueryData(queryKey);
       context.client.setQueryData(queryKey, (oldData) =>
         oldData

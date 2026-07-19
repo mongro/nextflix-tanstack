@@ -37,7 +37,6 @@ export const Route = createFileRoute("/$lang")({
 
 function RouteComponent() {
   const dictionary = Route.useLoaderData();
-  console.log("dictionary", dictionary);
   const { lang } = Route.useRouteContext();
   return (
     <DictionaryProvider dictionary={dictionary} lang={lang}>
