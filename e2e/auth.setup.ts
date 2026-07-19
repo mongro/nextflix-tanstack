@@ -6,6 +6,16 @@ const authFile = path.join(
   "../playwright/.auth/user.json",
 );
 setup("authenticate", async ({ page }) => {
+  // The test database is empty on a fresh CI run, so the test user has to be
+  // created first. Against a persistent local DB where it already exists, the
+  // form just won't navigate away — that's expected and safe to ignore.
+  await page.goto("/en/auth/register");
+  await page.getByLabel("Email").fill(process.env.TEST_USER_EMAIL!);
+  await page.getByLabel("Password").fill(process.env.TEST_USER_PASSWORD!);
+  await page.getByLabel("Username").fill("E2E Test User");
+  await page.getByRole("button", { name: "Register" }).click();
+  await page.waitForURL("/en", { timeout: 5000 }).catch(() => {});
+
   await page.goto("/en/auth/login");
   await page.getByLabel("Email").fill(process.env.TEST_USER_EMAIL!);
   await page.getByLabel("Password").fill(process.env.TEST_USER_PASSWORD!);

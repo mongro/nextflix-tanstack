@@ -8,6 +8,30 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_USER: dev_user
+          POSTGRES_PASSWORD: dev_password
+          POSTGRES_DB: dev_db
+        ports:
+          - 5433:5432
+        options: >-
+          --health-cmd="pg_isready -U dev_user"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+    env:
+      DATABASE_URL: postgresql://dev_user:dev_password@localhost:5433/dev_db
+      BETTER_AUTH_URL: http://localhost:3000
+      BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
+      API_KEY: ${{ secrets.TMDB_API_KEY }}
+      VITE_API_KEY: ${{ secrets.TMDB_API_KEY }}
+      TEST_USER_EMAIL: e2e-test@example.com
+      TEST_USER_PASSWORD: "TestPassword123!"
+      VITE_TEST_USER_EMAIL: e2e-test@example.com
+      VITE_TEST_USER_PASSWORD: "TestPassword123!"
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
@@ -15,10 +39,37 @@ jobs:
         node-version: lts/*
     - name: Install dependencies
       run: npm install -g pnpm && pnpm install
+    - name: Generate Prisma Client
+      run: pnpm exec prisma generate
+    - name: Run database migrations
+      run: pnpm exec prisma migrate deploy
+    - name: Build app
+      run: pnpm build
     - name: Install Playwright Browsers
       run: pnpm exec playwright install --with-deps
+    - name: Start app
+      run: nohup pnpm start > server.log 2>&1 &
+    - name: Wait for app to be ready
+      run: |
+        for i in $(seq 1 30); do
+          if curl -sf http://localhost:3000/ -o /dev/null; then
+            echo "App is up"
+            exit 0
+          fi
+          sleep 2
+        done
+        echo "App did not start in time"
+        cat server.log
+        exit 1
     - name: Run Playwright tests
       run: pnpm exec playwright test
+    - name: Upload server log
+      if: ${{ !cancelled() }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: server-log
+        path: server.log
+        retention-days: 30
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
