@@ -1,14 +1,15 @@
 import { expect, test } from "@/e2e/fixture";
-import { findOrCreateMovie } from "~/lib/db/movie";
 import { giveRating } from "~/lib/db/rating";
 import prisma from "~/lib/prisma";
+
+const START_PROFILE_ID = 1;
 
 test.beforeEach(async ({ page, language }) => {
   //  reset ratings
 
-  const result = await prisma.profileMovieRating.deleteMany({
+  await prisma.profileMovieRating.deleteMany({
     where: {
-      profileId: 3,
+      profileId: START_PROFILE_ID,
     },
   });
   await page.goto(`/${language}/shows`);
@@ -75,7 +76,7 @@ test("remove rating from the profile page", async ({
   dictionary,
   language,
 }) => {
-  await giveRating(1, "movie-1339713", "UP");
+  await giveRating(START_PROFILE_ID, "movie-1339713", "UP");
 
   /*   const result = await prisma.profileMovieRating.upsert({
     where: {
@@ -107,22 +108,8 @@ test("change rating from the profile page", async ({
   dictionary,
   language,
 }) => {
-  const result = await prisma.profileMovieRating.upsert({
-    where: {
-      profileMovieRatingId: {
-        profileId: 3,
-        movieId: "movie-1339713",
-      },
-    },
-    update: {
-      rating: "UP",
-    },
-    create: {
-      movieId: "movie-1339713",
-      profileId: 3,
-      rating: "UP",
-    },
-  });
+  await giveRating(START_PROFILE_ID, "movie-1339713", "UP");
+
   await page.goto(`/${language}/account/profiles/3/ratings/`);
   const thumbsUp = page.getByRole("button", {
     name: dictionary.buttons.thumbsUp,
