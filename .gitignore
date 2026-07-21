@@ -2,7 +2,7 @@ node_modules
 package-lock.json
 yarn.lock
 dist
-
+.claude
 .DS_Store
 .cache
 .env

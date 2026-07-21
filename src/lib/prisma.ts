@@ -11,16 +11,17 @@ const globalForPrisma = global as unknown as {
 const connectionString = process.env.DATABASE_URL!;
 
 const createPrismaClient = () => {
-  // 1. Production / Neon Logic (WebSockets)
-  if (
-    process.env.NODE_ENV === "production" ||
-    connectionString.includes("neon.tech")
-  ) {
+  // Branching on process.env.NODE_ENV here doesn't work: Vite inlines
+  // NODE_ENV to a build-time constant, so `vite build` always resolves this
+  // to the same branch regardless of the runtime DATABASE_URL. The adapter
+  // choice has to depend on an actual runtime value instead.
+  if (connectionString.includes("neon.tech")) {
+    // Neon (WebSockets)
     const adapter = new PrismaNeon({ connectionString });
     return new PrismaClient({ adapter });
   }
 
-  // 2. Local Docker Logic (Standard TCP via pg adapter)
+  // Standard TCP via pg adapter (local Docker Postgres, etc.)
   const pool = new Pool({ connectionString });
   const adapter = new PrismaPg(pool);
   return new PrismaClient({ adapter });
