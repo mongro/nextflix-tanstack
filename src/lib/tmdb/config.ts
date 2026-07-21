@@ -1,7 +1,13 @@
 const BASE_URL = "https://api.themoviedb.org/3/";
-const API_KEY = import.meta.env.SSR
-  ? process.env.API_KEY
-  : import.meta.env.VITE_API_KEY;
+// import.meta.env is only populated by Vite's transform. Code paths that
+// import this module directly under plain Node (e.g. Playwright specs
+// importing ~/lib/db/* helpers) never go through Vite, so import.meta.env
+// itself is undefined there - treat that the same as SSR.
+const API_KEY =
+  typeof import.meta.env === "undefined" || import.meta.env.SSR
+    ? process.env.API_KEY
+    : import.meta.env.VITE_API_KEY;
+
 export const LIFETIME_CACHE_TMDB = 10000;
 
 interface ApiOptions {

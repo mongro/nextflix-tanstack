@@ -1,4 +1,6 @@
 import { expect, test } from "@/e2e/fixture";
+import { findOrCreateMovie } from "~/lib/db/movie";
+import { giveRating } from "~/lib/db/rating";
 import prisma from "~/lib/prisma";
 
 test.beforeEach(async ({ page, language }) => {
@@ -73,7 +75,9 @@ test("remove rating from the profile page", async ({
   dictionary,
   language,
 }) => {
-  const result = await prisma.profileMovieRating.upsert({
+  await giveRating(3, "movie-1339713", "UP");
+
+  /*   const result = await prisma.profileMovieRating.upsert({
     where: {
       profileMovieRatingId: {
         profileId: 3,
@@ -88,7 +92,7 @@ test("remove rating from the profile page", async ({
       profileId: 3,
       rating: "UP",
     },
-  });
+  }); */
   await page.goto(`/${language}/account/profiles/3/ratings/`);
   const thumbsUp = page.getByRole("button", {
     name: dictionary.buttons.thumbsUp,

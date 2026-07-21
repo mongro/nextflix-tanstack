@@ -3,6 +3,7 @@ import { fileURLToPath } from "node:url";
 import dotenv from "dotenv";
 
 import { defineConfig, devices } from "@playwright/test";
+import { loadEnv } from "vite";
 
 /**
  * Read environment variables from file.
