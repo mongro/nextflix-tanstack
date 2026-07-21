@@ -75,7 +75,7 @@ test("remove rating from the profile page", async ({
   dictionary,
   language,
 }) => {
-  await giveRating(3, "movie-1339713", "UP");
+  await giveRating(1, "movie-1339713", "UP");
 
   /*   const result = await prisma.profileMovieRating.upsert({
     where: {
