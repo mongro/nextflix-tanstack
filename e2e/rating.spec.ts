@@ -2,16 +2,10 @@ import { expect, test } from "@/e2e/fixture";
 import { giveRating } from "~/lib/db/rating";
 import prisma from "~/lib/prisma";
 
-const START_PROFILE_ID = 1;
-
-test.beforeEach(async ({ page, language }) => {
+test.beforeEach(async ({ page, language, profileId }) => {
   //  reset ratings
 
-  await prisma.profileMovieRating.deleteMany({
-    where: {
-      profileId: START_PROFILE_ID,
-    },
-  });
+  await prisma.profileMovieRating.deleteMany({ where: { profileId } });
   await page.goto(`/${language}/shows`);
   await expect(
     page.getByRole("button", { name: "account-button" }),
@@ -50,6 +44,7 @@ test("adds rating to the profile page", async ({
   page,
   dictionary,
   language,
+  profileId,
 }) => {
   const thumbnail = page.getByTestId("thumbnail").first();
   await thumbnail.hover();
@@ -62,7 +57,7 @@ test("adds rating to the profile page", async ({
   await expect(thumbsUp).not.toHaveAttribute("aria-pressed", "true");
   await thumbsUp.click();
   await dialog.press("Escape");
-  await page.goto(`/${language}/account/profiles/3/ratings/`);
+  await page.goto(`/${language}/account/profiles/${profileId}/ratings/`);
   await expect(
     page.getByRole("button", {
       name: dictionary.buttons.thumbsUp,
@@ -75,26 +70,11 @@ test("remove rating from the profile page", async ({
   page,
   dictionary,
   language,
+  profileId,
 }) => {
-  await giveRating(START_PROFILE_ID, "movie-1339713", "UP");
+  await giveRating(profileId, "movie-1339713", "UP");
 
-  /*   const result = await prisma.profileMovieRating.upsert({
-    where: {
-      profileMovieRatingId: {
-        profileId: 3,
-        movieId: "movie-1339713",
-      },
-    },
-    update: {
-      rating: "UP",
-    },
-    create: {
-      movieId: "movie-1339713",
-      profileId: 3,
-      rating: "UP",
-    },
-  }); */
-  await page.goto(`/${language}/account/profiles/3/ratings/`);
+  await page.goto(`/${language}/account/profiles/${profileId}/ratings/`);
   const thumbsUp = page.getByRole("button", {
     name: dictionary.buttons.thumbsUp,
   });
@@ -107,10 +87,11 @@ test("change rating from the profile page", async ({
   page,
   dictionary,
   language,
+  profileId,
 }) => {
-  await giveRating(START_PROFILE_ID, "movie-1339713", "UP");
+  await giveRating(profileId, "movie-1339713", "UP");
 
-  await page.goto(`/${language}/account/profiles/3/ratings/`);
+  await page.goto(`/${language}/account/profiles/${profileId}/ratings/`);
   const thumbsUp = page.getByRole("button", {
     name: dictionary.buttons.thumbsUp,
   });

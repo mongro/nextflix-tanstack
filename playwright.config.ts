@@ -39,35 +39,28 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    { name: "setup", testMatch: /.*\.setup\.ts/ },
+    // No "setup" project / storageState path here - e2e/fixture.ts
+    // authenticates each worker as its own dedicated test account via a
+    // worker-scoped fixture, so it needs no config-level wiring.
     {
       name: "chromium",
       use: {
         ...devices["Desktop Chrome"],
-        // Use prepared auth state.
-        storageState: "playwright/.auth/user.json",
       },
-      dependencies: ["setup"],
     },
 
     {
       name: "firefox",
       use: {
         ...devices["Desktop Chrome"],
-        // Use prepared auth state.
-        storageState: "playwright/.auth/user.json",
       },
-      dependencies: ["setup"],
     },
 
     {
       name: "webkit",
       use: {
         ...devices["Desktop Safari"],
-        // Use prepared auth state.
-        storageState: "playwright/.auth/user.json",
       },
-      dependencies: ["setup"],
     },
 
     /* Test against mobile viewports. */

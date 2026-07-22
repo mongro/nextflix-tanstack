@@ -1,14 +1,15 @@
 import { expect, test } from "@/e2e/fixture";
 import prisma from "~/lib/prisma";
 
-test.beforeEach(async ({ page, language }) => {
+test.beforeEach(async ({ page, language, profileId }) => {
   //  reset my List
 
   const result = await prisma.profileMovie.deleteMany({
     where: {
-      profileId: 3,
+      profileId,
     },
   });
+
   console.log("deleted movies from my list", result);
   await page.goto(`/${language}/shows`);
   await expect(

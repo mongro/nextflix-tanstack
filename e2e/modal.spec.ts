@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "@/e2e/fixture";
 
 test("expanding small modal to big modal", async ({ page }) => {
   await page.goto("/");
