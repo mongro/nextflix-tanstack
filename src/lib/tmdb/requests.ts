@@ -158,15 +158,26 @@ export const searchMedia = async (
   keyword: string,
   pageParam?: number,
   lang?: Locale,
-) =>
-  api<List<Movie | Show | Person>>({
-    path: `search/multi`,
-    queryParams: [
-      `query=${keyword}`,
-      `page=${pageParam || 1}`,
-      `language=${lang}`,
-    ],
-  });
+): Promise<List<Movie | Show>> => {
+  const page = pageParam || 1;
+  const queryParams = [
+    `query=${keyword}`,
+    `page=${page}`,
+    `language=${lang}`,
+  ];
+
+  const [movies, shows] = await Promise.all([
+    api<List<Movie>>({ path: `search/movie`, queryParams }),
+    api<List<Show>>({ path: `search/tv`, queryParams }),
+  ]);
+
+  return {
+    page,
+    total_pages: Math.max(movies.total_pages, shows.total_pages),
+    total_results: movies.total_results + shows.total_results,
+    results: [...movies.results, ...shows.results],
+  };
+};
 export const searchPeople = async (
   keyword: string,
   pageParam?: number,

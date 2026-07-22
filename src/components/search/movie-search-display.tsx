@@ -20,12 +20,13 @@ function SearchGallery({ search }: Props) {
       lastPage.page < lastPage.total_pages ? lastPage.page + 1 : undefined,
   });
 
-  const moviesOrShows = data?.pages.reduce<Array<Movie | Show>>((prev, curr) => {
-    const result = curr.results;
-    const moviesOrShows = result.filter(isShowOrMovie);
+  const moviesOrShows = data?.pages.reduce<Array<Movie | Show>>(
+    (prev, curr) => {
+      return [...prev, ...curr.results];
+    },
+    [],
+  );
 
-    return [...prev, ...moviesOrShows];
-  }, []);
   return (
     <>
       <div className=" grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-4 gap-y-16">

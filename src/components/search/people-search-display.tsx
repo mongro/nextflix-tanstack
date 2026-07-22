@@ -13,7 +13,10 @@ export default function PeopleSearchDisplay() {
           </div>
           <div className="mb-4">
             <ul className="flex flex-wrap  text-xl ">
-              {people.results.map((person) => (
+              {[...people.results]
+                .sort((a, b) => b.popularity - a.popularity)
+                .slice(0, 10)
+                .map((person) => (
                 <li className="px-2  text-neutral-50" key={person.id}>
                   <Link
                     to={`/$lang/search`}
